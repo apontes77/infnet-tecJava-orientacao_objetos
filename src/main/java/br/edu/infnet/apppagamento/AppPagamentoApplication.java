@@ -1,4 +1,4 @@
-package br.com.infnet.apppagamento;
+package br.edu.infnet.apppagamento;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
