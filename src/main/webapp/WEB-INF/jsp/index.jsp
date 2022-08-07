@@ -10,7 +10,7 @@
 <body>
 <div class="container mt-3">
   <h2>Projeto App Pagamentos</h2>
-  <h4>Classe: Pagamento</h4>        
+  <h4>Classe: Conta</h4>        
   <table class="table table-striped">
     <thead>
       <tr>
@@ -26,19 +26,19 @@
         <td>atributo identificador</td>
       </tr>
       <tr>
-        <td>estado</td>
-        <td>EstadoPagamento</td>
-        <td>Indica o status do pagamento</td>
+        <td>contaAtiva</td>
+        <td>boolean</td>
+        <td>Indica se a conta é ativa</td>
       </tr>
       <tr>
         <td>descrição</td>
         <td>String</td>
-        <td>descrição do pagamento</td>
+        <td>descrição da conta</td>
       </tr>
     </tbody>
   </table>
   
-  <h4>Classe: PagamentoComPix</h4>        
+  <h4>Classe: Consumo</h4>        
   <table class="table table-striped">
     <thead>
       <tr>
@@ -49,52 +49,19 @@
     </thead>
     <tbody>
       <tr>
-        <td>dataVencimento</td>
-        <td>LocalDate</td>
-        <td>data de vencimento do pagamento</td>
-      </tr>
-      <tr>
-        <td>dataPagamento</td>
-        <td>LocalDate</td>
-        <td>data de realização do pagamento</td>
-      </tr>
-      <tr>
-        <td>chavePixParaPagar</td>
+        <td>item</td>
         <td>String</td>
-        <td>chave pix para ser copiada e usada para a transferência monetária</td>
+        <td>descrição do item exsitente na conta</td>
+      </tr>
+      <tr>
+        <td>quantidadeDeItens</td>
+        <td>Integer</td>
+        <td>quantidade de itens existentes na conta</td>
       </tr>
     </tbody>
   </table>
   
-  <h4>Classe: PagamentoComBoleto</h4>        
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Atributo</th>
-        <th>Tipo</th>
-        <th>Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>dataVencimento</td>
-        <td>LocalDate</td>
-        <td>data de vencimento do pagamento</td>
-      </tr>
-      <tr>
-        <td>dataPagamento</td>
-        <td>LocalDate</td>
-        <td>data de realização do pagamento</td>
-      </tr>
-      <tr>
-        <td>codigo</td>
-        <td>String</td>
-        <td>codigo numerico referente ao código de barras do boleto</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h4>Classe: PagamentoComCartao</h4>        
+  <h4>Classe: Extra</h4>        
   <table class="table table-striped">
     <thead>
       <tr>
@@ -107,17 +74,35 @@
       <tr>
         <td>numeroDeParcelas</td>
         <td>Integer</td>
-        <td>quantidade de parcelas a pagar</td>
+        <td>quantidade de parcelas da conta</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h4>Classe: Tributo</h4>        
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Atributo</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ICMS</td>
+        <td>BigDecimal</td>
+        <td>imposto estadual</td>
       </tr>
       <tr>
-        <td>bandeira</td>
-        <td>String</td>
-        <td>intermediario de transações financeiras do cartão</td>
+        <td>IOF</td>
+        <td>BigDecimal</td>
+        <td>imposto sobre operações financeiras</td>
       </tr>
       <tr>
-        <td>numeroCartao</td>
-        <td>String</td>
-        <td>numero do cartão em questão</td>
+        <td>ISS</td>
+        <td>BigDecimal</td>
+        <td>imposto sobre serviços</td>
       </tr>
     </tbody>
   </table>
@@ -147,15 +132,10 @@
         <td>String</td>
         <td>email do cliente</td>
       </tr>
-      <tr>
-        <td>tipo</td>
-        <td>TipoCliente</td>
-        <td>indica se o cliente é pessoa física ou jurídica</td>
-      </tr>
     </tbody>
   </table>
   
-  <h4>Classe: Telefone</h4>        
+  <h4>Classe: Pagamento</h4>        
   <table class="table table-striped">
     <thead>
       <tr>
@@ -166,24 +146,19 @@
     </thead>
     <tbody>
       <tr>
-        <td>numero</td>
+        <td>numeroCartao</td>
         <td>String</td>
-        <td>numero de telefone</td>
+        <td>numero do cartão para pagamento</td>
       </tr>
       <tr>
-        <td>DDD</td>
+        <td>bandeira</td>
         <td>String</td>
-        <td>Discagem Direta à Distância - identificador da UF do numero de telefone</td>
+        <td>bandeira do cartão</td>
       </tr>
       <tr>
-        <td>prefixo</td>
-        <td>String</td>
-        <td>indica o país do número de telefone em questão</td>
-      </tr>
-      <tr>
-        <td>tipo</td>
-        <td>TipoCliente</td>
-        <td>indica se o cliente é pessoa física ou jurídica</td>
+        <td>valor</td>
+        <td>BigDecimal</td>
+        <td>valor do pagamento</td>
       </tr>
     </tbody>
   </table>
