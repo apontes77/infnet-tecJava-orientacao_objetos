@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Tributo;
+import br.edu.infnet.model.test.AppPagamento;
 
 @Component
 public class TributoTeste implements ApplicationRunner {
@@ -26,6 +27,8 @@ public class TributoTeste implements ApplicationRunner {
 		t1.setDescricao("conta para experts");
 		t1.setId(100);
 		System.out.println(t1);
+
+		new AppPagamento("").relatorio(t1);
 
 		Tributo t2 = new Tributo();
 
