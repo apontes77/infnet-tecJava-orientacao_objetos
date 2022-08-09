@@ -11,6 +11,12 @@ public class Consumo extends Conta {
 				+ individualOuGrupo + "\n" + super.toString();
 	}
 
+	@Override
+	public String validaContaAtiva() {
+
+		return this.item + "com " + this.quantidadeDeItens + "itens possui conta ativa";
+	}
+
 	public String getItem() {
 		return item;
 	}
@@ -33,6 +39,11 @@ public class Consumo extends Conta {
 
 	public void setIndividualOuGrupo(String individualOuGrupo) {
 		this.individualOuGrupo = individualOuGrupo;
+	}
+
+	@Override
+	public String descricaoEmCapsLock() {
+		return this.item + " faz parte da conta com descrição: " + getDescricao();
 	}
 
 }

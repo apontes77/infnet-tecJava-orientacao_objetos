@@ -1,9 +1,15 @@
 package br.edu.infnet.model.domain;
 
-public class Conta {
+public abstract class Conta {
 	private Integer id;
 	private String descricao;
 	private boolean contaAtiva;
+
+	public String validaContaAtiva() {
+		return "descrição da conta: " + this.descricao;
+	}
+
+	public abstract String descricaoEmCapsLock();
 
 	@Override
 	public String toString() {

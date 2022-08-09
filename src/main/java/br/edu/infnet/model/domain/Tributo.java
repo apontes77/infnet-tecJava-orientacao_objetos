@@ -10,6 +10,12 @@ public class Tributo extends Conta {
 	public Tributo() {
 	}
 
+	@Override
+	public String validaContaAtiva() {
+
+		return super.validaContaAtiva() + "com ICMS: " + this.ICMS + "com IOF: " + this.IOF + "com ISS: " + this.ISS;
+	}
+
 	public Tributo(BigDecimal iCMS, BigDecimal iOF, BigDecimal iSS) {
 		super();
 		ICMS = iCMS;
@@ -44,6 +50,11 @@ public class Tributo extends Conta {
 
 	public void setISS(BigDecimal iSS) {
 		ISS = iSS;
+	}
+
+	@Override
+	public String descricaoEmCapsLock() {
+		return "ICMS" + ICMS;
 	}
 
 }
