@@ -5,18 +5,6 @@ public class Consumo extends Conta {
 	private Integer quantidadeDeItens;
 	private String individualOuGrupo;
 
-	@Override
-	public String toString() {
-		return "Item: " + item + "\n Quantidade de Itens: " + quantidadeDeItens + "\n Individual ou Grupo: "
-				+ individualOuGrupo + "\n" + super.toString();
-	}
-
-	@Override
-	public String validaContaAtiva() {
-
-		return this.item + "com " + this.quantidadeDeItens + "itens possui conta ativa";
-	}
-
 	public String getItem() {
 		return item;
 	}
@@ -42,8 +30,20 @@ public class Consumo extends Conta {
 	}
 
 	@Override
-	public String descricaoEmCapsLock() {
-		return this.item + " faz parte da conta com descrição: " + getDescricao();
+	public String toString() {
+		return "Item: " + item + "\n Quantidade de Itens: " + quantidadeDeItens + "\n Individual ou Grupo: "
+				+ individualOuGrupo + "\n" + super.toString();
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Consumo");
+		System.out.println(this);
+	}
+
+	@Override
+	public String validaContaAtiva() {
+		return super.getDescricao() + " com item " + getItem() + " é ativa";
 	}
 
 }

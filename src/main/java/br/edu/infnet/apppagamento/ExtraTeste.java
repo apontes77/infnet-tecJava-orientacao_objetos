@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Extra;
+import br.edu.infnet.model.test.AppImpressao;
 
 @Component
 public class ExtraTeste implements ApplicationRunner {
@@ -22,6 +23,7 @@ public class ExtraTeste implements ApplicationRunner {
 		e1.setContaAtiva(true);
 		e1.setDescricao("conta para experts");
 		e1.setId(100);
+		AppImpressao.relatorio("Extra 1: ", e1);
 		System.out.println(e1);
 
 		Extra e2 = new Extra();
@@ -31,7 +33,7 @@ public class ExtraTeste implements ApplicationRunner {
 		e2.setContaAtiva(true);
 		e2.setDescricao("conta para day traders");
 		e2.setId(200);
-		System.out.println(e2);
+		AppImpressao.relatorio("Extra 2: ", e2);
 
 		Extra e3 = new Extra();
 		e3.setNumeroDeParcelas(6);
@@ -40,7 +42,7 @@ public class ExtraTeste implements ApplicationRunner {
 		e3.setContaAtiva(true);
 		e3.setDescricao("conta para estudantes");
 		e3.setId(300);
-		System.out.println(e3);
+		AppImpressao.relatorio("Extra 3: ", e3);
 
 	}
 

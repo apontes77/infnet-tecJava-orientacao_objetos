@@ -10,22 +10,11 @@ public class Tributo extends Conta {
 	public Tributo() {
 	}
 
-	@Override
-	public String validaContaAtiva() {
-
-		return super.validaContaAtiva() + "com ICMS: " + this.ICMS + "com IOF: " + this.IOF + "com ISS: " + this.ISS;
-	}
-
 	public Tributo(BigDecimal iCMS, BigDecimal iOF, BigDecimal iSS) {
 		super();
 		ICMS = iCMS;
 		IOF = iOF;
 		ISS = iSS;
-	}
-
-	@Override
-	public String toString() {
-		return "ICMS: R$ " + ICMS + ", IOF: R$ " + IOF + ", ISS: R$ " + ISS + "\n" + super.toString();
 	}
 
 	public BigDecimal getICMS() {
@@ -53,8 +42,20 @@ public class Tributo extends Conta {
 	}
 
 	@Override
-	public String descricaoEmCapsLock() {
-		return "ICMS" + ICMS;
+	public String validaContaAtiva() {
+		// TODO Auto-generated method stub
+		return super.getDescricao() + " é ativa";
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Tributo");
+		System.out.println(this);
+	}
+
+	@Override
+	public String toString() {
+		return "ICMS: R$ " + ICMS + ", IOF: R$ " + IOF + ", ISS: R$ " + ISS + "\n" + super.toString();
 	}
 
 }

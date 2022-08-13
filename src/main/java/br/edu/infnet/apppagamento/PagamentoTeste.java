@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Pagamento;
+import br.edu.infnet.model.test.AppImpressao;
 
 @Component
 @Order(1)
@@ -22,19 +23,19 @@ public class PagamentoTeste implements ApplicationRunner {
 		p1.setNumeroCartao("5399 5675 2557 4212 ");
 		p1.setBandeira("mastercard");
 		p1.setValor(new BigDecimal(24.90).setScale(2, RoundingMode.DOWN));
-		System.out.println(p1);
+		AppImpressao.relatorio("Pagamento 1: ", p1);
 
 		Pagamento p2 = new Pagamento();
 		p2.setNumeroCartao("4929 2722 6230 1620");
 		p2.setBandeira("visa");
 		p2.setValor(new BigDecimal(25.90).setScale(2, RoundingMode.DOWN));
-		System.out.println(p2);
+		AppImpressao.relatorio("Pagamento 2: ", p2);
 
 		Pagamento p3 = new Pagamento();
 		p3.setNumeroCartao("3025 990326 0269");
 		p3.setBandeira("Dinners club");
 		p3.setValor(new BigDecimal(25.90).setScale(2, RoundingMode.DOWN));
-		System.out.println(p3);
+		AppImpressao.relatorio("Pagamento 3: ", p3);
 
 	}
 }

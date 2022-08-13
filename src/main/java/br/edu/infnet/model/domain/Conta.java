@@ -1,15 +1,13 @@
 package br.edu.infnet.model.domain;
 
-public abstract class Conta {
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
+
+public abstract class Conta implements IPrinter {
 	private Integer id;
 	private String descricao;
 	private boolean contaAtiva;
 
-	public String validaContaAtiva() {
-		return "descrição da conta: " + this.descricao;
-	}
-
-	public abstract String descricaoEmCapsLock();
+	public abstract String validaContaAtiva();
 
 	@Override
 	public String toString() {
@@ -38,6 +36,12 @@ public abstract class Conta {
 
 	public void setContaAtiva(boolean contaAtiva) {
 		this.contaAtiva = contaAtiva;
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Conta");
+		System.out.println(this);
 	}
 
 }

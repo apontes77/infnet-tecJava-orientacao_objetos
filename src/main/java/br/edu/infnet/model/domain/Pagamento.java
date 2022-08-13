@@ -2,7 +2,9 @@ package br.edu.infnet.model.domain;
 
 import java.math.BigDecimal;
 
-public class Pagamento {
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
+
+public class Pagamento implements IPrinter {
 	private String numeroCartao;
 	private String bandeira;
 	private BigDecimal valor;
@@ -34,6 +36,13 @@ public class Pagamento {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#pagamento");
+		System.out.println(this);
+
 	}
 
 }

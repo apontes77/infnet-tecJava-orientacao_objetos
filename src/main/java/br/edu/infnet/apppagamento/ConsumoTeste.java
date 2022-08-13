@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Consumo;
+import br.edu.infnet.model.test.AppImpressao;
 
 @Component
 public class ConsumoTeste implements ApplicationRunner {
@@ -21,7 +22,7 @@ public class ConsumoTeste implements ApplicationRunner {
 		c1.setContaAtiva(true);
 		c1.setDescricao("conta presidencial");
 		c1.setId(123);
-		System.out.println(c1);
+		AppImpressao.relatorio("Consumo 1: ", c1);
 
 		Consumo c2 = new Consumo();
 		c2.setItem("volante");
@@ -30,7 +31,7 @@ public class ConsumoTeste implements ApplicationRunner {
 		c2.setContaAtiva(true);
 		c2.setDescricao("conta do deputado");
 		c2.setId(321);
-		System.out.println(c2);
+		AppImpressao.relatorio("Consumo 2: ", c2);
 
 		Consumo c3 = new Consumo();
 		c3.setItem("amortecedor");
@@ -39,7 +40,8 @@ public class ConsumoTeste implements ApplicationRunner {
 		c3.setContaAtiva(true);
 		c3.setDescricao("conta comum");
 		c3.setId(222);
-		System.out.println(c3);
+
+		AppImpressao.relatorio("Consumo 3: ", c3);
 
 	}
 

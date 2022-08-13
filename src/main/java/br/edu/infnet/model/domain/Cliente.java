@@ -1,6 +1,8 @@
 package br.edu.infnet.model.domain;
 
-public class Cliente {
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
+
+public class Cliente implements IPrinter {
 	private Integer id;
 	private String nome;
 	private String email;
@@ -48,6 +50,12 @@ public class Cliente {
 
 	public void setCpfOuCpnj(String cpfOuCpnj) {
 		this.cpfOuCpnj = cpfOuCpnj;
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#cliente");
+		System.out.println(this);
 	}
 
 }

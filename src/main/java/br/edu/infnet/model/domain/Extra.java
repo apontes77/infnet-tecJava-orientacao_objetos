@@ -12,18 +12,6 @@ public class Extra extends Conta {
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
 
-	@Override
-	public String validaContaAtiva() {
-
-		return "conta ativa: " + super.validaContaAtiva() + "com " + this.numeroDeParcelas + "Parcelas";
-	}
-
-	@Override
-	public String toString() {
-		return "Quantidade de Parcelas: " + numeroDeParcelas + "\n é pagamento em lote? " + pagamentoLote
-				+ "\n é pagamento único? " + pagamentoUnico + "\n" + super.toString();
-	}
-
 	public Integer getNumeroDeParcelas() {
 		return numeroDeParcelas;
 	}
@@ -49,8 +37,20 @@ public class Extra extends Conta {
 	}
 
 	@Override
-	public String descricaoEmCapsLock() {
-		return this.getDescricao().toUpperCase() + " número de parcelas: " + this.numeroDeParcelas;
+	public String validaContaAtiva() {
+		return "é valida!";
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Extra");
+		System.out.println(this);
+	}
+
+	@Override
+	public String toString() {
+		return "Quantidade de Parcelas: " + numeroDeParcelas + "\n é pagamento em lote? " + pagamentoLote
+				+ "\n é pagamento único? " + pagamentoUnico + "\n" + super.toString();
 	}
 
 }

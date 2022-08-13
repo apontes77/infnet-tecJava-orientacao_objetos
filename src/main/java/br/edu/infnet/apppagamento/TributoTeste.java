@@ -8,7 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Tributo;
-import br.edu.infnet.model.test.AppPagamento;
+import br.edu.infnet.model.test.AppImpressao;
 
 @Component
 public class TributoTeste implements ApplicationRunner {
@@ -28,7 +28,7 @@ public class TributoTeste implements ApplicationRunner {
 		t1.setId(100);
 		System.out.println(t1);
 
-		new AppPagamento("").relatorio(t1);
+		AppImpressao.relatorio("tributo 1", t1);
 
 		Tributo t2 = new Tributo();
 
@@ -40,6 +40,8 @@ public class TributoTeste implements ApplicationRunner {
 		t2.setId(200);
 		System.out.println(t2);
 
+		AppImpressao.relatorio("tributo 1", t2);
+
 		Tributo t3 = new Tributo();
 
 		t3.setICMS(new BigDecimal(27.90).setScale(2, RoundingMode.DOWN));
@@ -48,6 +50,8 @@ public class TributoTeste implements ApplicationRunner {
 		t3.setContaAtiva(true);
 		t3.setDescricao("conta para estudantes");
 		t3.setId(300);
+
+		AppImpressao.relatorio("tributo 1", t3);
 		System.out.println(t3);
 	}
 
