@@ -63,6 +63,11 @@
                   <td>BigDecimal</td>
                   <td>valor do pagamento</td>
                </tr>
+                <tr>
+                  <td>data</td>
+                  <td>LocalDateTime</td>
+                  <td>data do pagamento</td>
+               </tr>
             </tbody>
          </table>
       </div>

@@ -41,9 +41,4 @@ public class Consumo extends Conta {
 		System.out.println(this);
 	}
 
-	@Override
-	public String validaContaAtiva() {
-		return super.getDescricao() + " com item " + getItem() + " é ativa";
-	}
-
 }

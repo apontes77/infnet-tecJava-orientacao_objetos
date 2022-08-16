@@ -42,12 +42,6 @@ public class Tributo extends Conta {
 	}
 
 	@Override
-	public String validaContaAtiva() {
-		// TODO Auto-generated method stub
-		return super.getDescricao() + " é ativa";
-	}
-
-	@Override
 	public void impressao() {
 		System.out.println("#Tributo");
 		System.out.println(this);

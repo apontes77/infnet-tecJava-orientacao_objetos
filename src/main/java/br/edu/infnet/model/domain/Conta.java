@@ -1,13 +1,24 @@
 package br.edu.infnet.model.domain;
 
+import java.util.Objects;
+
 import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
-public abstract class Conta implements IPrinter {
+public class Conta implements IPrinter {
 	private Integer id;
 	private String descricao;
 	private boolean contaAtiva;
 
-	public abstract String validaContaAtiva();
+	public Conta() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Conta(Integer id, String descricao, boolean contaAtiva) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.contaAtiva = contaAtiva;
+	}
 
 	@Override
 	public String toString() {
@@ -42,6 +53,23 @@ public abstract class Conta implements IPrinter {
 	public void impressao() {
 		System.out.println("#Conta");
 		System.out.println(this);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Conta other = (Conta) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

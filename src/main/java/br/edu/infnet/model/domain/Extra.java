@@ -37,11 +37,6 @@ public class Extra extends Conta {
 	}
 
 	@Override
-	public String validaContaAtiva() {
-		return "é valida!";
-	}
-
-	@Override
 	public void impressao() {
 		System.out.println("#Extra");
 		System.out.println(this);
