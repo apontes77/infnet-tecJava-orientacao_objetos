@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.edu.infnet.model.domain.Tributo;
 import br.edu.infnet.model.test.AppImpressao;
@@ -27,10 +28,21 @@ public class TributoController {
 	public static Collection<Tributo> obterLista(){
 		return mapaTributo.values();
 	}
+	
+	public static void excluir(Integer id) {
+		mapaTributo.remove(id);
+	}
 
 	@GetMapping(value = "/tributo/lista")
 	public String telaTributo(Model model) {
 		model.addAttribute("listagem", obterLista());
 		return "tributo/lista";
+	}
+	
+	
+	@GetMapping(value = "/tributo/{id}/excluir")
+	public String exclusao(@PathVariable Integer id) {
+		excluir(id);
+		return "redirect:/tributo/lista";
 	}
 }
