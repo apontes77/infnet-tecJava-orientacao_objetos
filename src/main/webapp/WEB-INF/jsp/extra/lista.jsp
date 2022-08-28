@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,27 +43,23 @@
          <table class="table table-striped">
             <thead>
                <tr>
-                  <th>Atributo</th>
-                  <th>Tipo</th>
-                  <th>Descrição</th>
+                  <th>id</th>
+                  <th>número de parcelas</th>
+                  <th>pagamento em lote</th>
+                  <th>pagamento único</th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
+               <c:forEach var="e" items="${listagem}">
                <tr>
-                  <td>numeroDeParcelas</td>
-                  <td>Integer</td>
-                  <td>quantidade de parcelas da conta</td>
+                  <td>${e.id}</td>
+                  <td>${e.numeroDeParcelas}</td>
+                  <td>${e.pagamentoLote}</td>
+                  <td>${e.pagamentoUnico}</td>
+                  <td><a href="/extra/${e.id}/excluir">excluir</a></td>
                </tr>
-               <tr>
-                  <td>pagamentoLote</td>
-                  <td>boolean</td>
-                  <td>indica se o pagamento é em lote</td>
-               </tr>
-               <tr>
-                  <td>pagamentoUnico</td>
-                  <td>booelan</td>
-                  <td>indica se o pagamento é único</td>
-               </tr>
+             </c:forEach>
             </tbody>
          </table>
       </div>

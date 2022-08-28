@@ -17,14 +17,6 @@ public class Pagamento implements IPrinter {
 	private LocalDateTime data;
 	private Set<Conta> contas;
 
-	public Set<Conta> getContas() {
-		return contas;
-	}
-
-	public void setContas(Set<Conta> contas) {
-		this.contas = contas;
-	}
-
 	public Pagamento(Cliente cliente, Set<Conta> contas) throws ConjuntoDeContasInvalidoException, ClienteInvalidoException {
 		if(cliente==null) {
 			throw new ClienteInvalidoException("não é possível gerar um pagamento com um cliente nulo");
@@ -75,6 +67,26 @@ public class Pagamento implements IPrinter {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public Set<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(Set<Conta> contas) {
+		this.contas = contas;
 	}
 
 	@Override

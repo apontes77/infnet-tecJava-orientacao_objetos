@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,27 +43,23 @@
          <table class="table table-striped">
             <thead>
                <tr>
-                  <th>Atributo</th>
-                  <th>Tipo</th>
-                  <th>Descrição</th>
+               	  <th>Id</th>
+                  <th>Item</th>
+                  <th>Quantidade de Itens</th>
+                  <th>Individual ou Grupo</th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
+            <c:forEach var="c" items="${listagem}">
                <tr>
-                  <td>item</td>
-                  <td>String</td>
-                  <td>descrição do item exsitente na conta</td>
+                  <td>${c.id}</td>
+                  <td>${c.item}</td>
+                  <td>${c.quantidadeDeItens}</td>
+                  <td>${c.individualOuGrupo}</td>
+                  <td><a href="/consumo/${c.id}/excluir">excluir</a></td>
                </tr>
-               <tr>
-                  <td>quantidadeDeItens</td>
-                  <td>Integer</td>
-                  <td>quantidade de itens existentes na conta</td>
-               </tr>
-               <tr>
-                  <td>individualOuGrupo</td>
-                  <td>String</td>
-                  <td>identifica se o consumo da conta é indivual ou em grupo</td>
-               </tr>
+             </c:forEach>
             </tbody>
          </table>
       </div>

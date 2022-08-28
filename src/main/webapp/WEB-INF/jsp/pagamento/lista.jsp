@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,31 +43,29 @@
          <table class="table table-striped">
             <thead>
                <tr>
-                  <th>Atributo</th>
-                  <th>Tipo</th>
-                  <th>Descrição</th>
+                  <th>id</th>
+                  <th>numeroCartao</th>
+                  <th>bandeira</th>
+                  <th>valor</th>
+                  <th>cliente</th>
+                  <th>data</th>
+                  <th>contas</th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
+               <c:forEach var="p" items="${listagem}">
                <tr>
-                  <td>numeroCartao</td>
-                  <td>String</td>
-                  <td>numero do cartão para pagamento</td>
+                  <td>${p.id}</td>
+                  <td>${p.numeroCartao}</td>
+                  <td>${p.bandeira}</td>
+                  <td>${p.valor}</td>
+                  <td>${p.cliente.nome}</td>
+                  <td>${p.data}</td>
+                  <td>${p.contas.size()}</td>
+                  <td><a href="/pagamento/${p.id}/excluir">excluir</a></td>
                </tr>
-               <tr>
-                  <td>bandeira</td>
-                  <td>String</td>
-                  <td>bandeira do cartão</td>
-               </tr>
-               <tr>
-                  <td>valor</td>
-                  <td>BigDecimal</td>
-                  <td>valor do pagamento</td>
-               </tr>
-                <tr>
-                  <td>data</td>
-                  <td>LocalDateTime</td>
-                  <td>data do pagamento</td>
+             </c:forEach>
                </tr>
             </tbody>
          </table>

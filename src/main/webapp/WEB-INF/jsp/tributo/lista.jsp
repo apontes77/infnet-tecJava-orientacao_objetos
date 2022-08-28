@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,27 +43,23 @@
          <table class="table table-striped">
             <thead>
                <tr>
-                  <th>Atributo</th>
-                  <th>Tipo</th>
-                  <th>Descrição</th>
+                  <th>id</th>
+                  <th>ICMS</th>
+                  <th>IOF</th>
+                  <th>ISS</th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
+               <c:forEach var="t" items="${listagem}">
                <tr>
-                  <td>ICMS</td>
-                  <td>BigDecimal</td>
-                  <td>imposto estadual</td>
+                  <td>${t.id}</td>
+                  <td>${t.ICMS}</td>
+                  <td>${t.IOF}</td>
+                  <td>${t.ISS}</td>
+                  <td><a href="/tributo/${t.id}/excluir">excluir</a></td>
                </tr>
-               <tr>
-                  <td>IOF</td>
-                  <td>BigDecimal</td>
-                  <td>imposto sobre operações financeiras</td>
-               </tr>
-               <tr>
-                  <td>ISS</td>
-                  <td>BigDecimal</td>
-                  <td>imposto sobre serviços</td>
-               </tr>
+             </c:forEach>
             </tbody>
          </table>
       </div>
