@@ -3,15 +3,18 @@ package br.edu.infnet.model.domain;
 import java.util.Objects;
 
 import br.edu.infnet.apppagamento.interfaces.IPrinter;
+import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
 
-public class Conta implements IPrinter {
+public abstract class Conta implements IPrinter {
 	private Integer id;
 	private String descricao;
 	private boolean contaAtiva;
 
-	public Conta() {
-		// TODO Auto-generated constructor stub
-	}
+	public Conta() {}
+	
+	public abstract boolean mostraContaAtiva() throws ConsumoInvalidoException, ImpostoInvalidoException, QuantidadeDeParcelasInvalidaException;
 
 	public Conta(Integer id, String descricao, boolean contaAtiva) {
 		super();

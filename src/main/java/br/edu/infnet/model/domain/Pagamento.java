@@ -5,8 +5,11 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import br.edu.infnet.apppagamento.interfaces.IPrinter;
+import br.edu.infnet.model.domain.exceptions.ClienteInvalidoException;
+import br.edu.infnet.model.domain.exceptions.ConjuntoDeContasInvalidoException;
 
 public class Pagamento implements IPrinter {
+	private Integer id;
 	private String numeroCartao;
 	private String bandeira;
 	private BigDecimal valor;
@@ -22,15 +25,32 @@ public class Pagamento implements IPrinter {
 		this.contas = contas;
 	}
 
-	public Pagamento(Cliente cliente) {
+	public Pagamento(Cliente cliente, Set<Conta> contas) throws ConjuntoDeContasInvalidoException, ClienteInvalidoException {
+		if(cliente==null) {
+			throw new ClienteInvalidoException("não é possível gerar um pagamento com um cliente nulo");
+		}
+		
+		if(contas==null) {
+			throw new ConjuntoDeContasInvalidoException("não é possível realizar um pagamento ser ter uma conta");
+		}
+		
 		this.data = LocalDateTime.now();
 		this.cliente = cliente;
+		this.contas = contas;
 	}
 
 	@Override
 	public String toString() {
 		return "Número do Cartão: " + numeroCartao + "; Bandeira: " + bandeira + ";data: " + data + "; Valor: R$ "
 				+ valor + " " + cliente + ";" + contas.size();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNumeroCartao() {

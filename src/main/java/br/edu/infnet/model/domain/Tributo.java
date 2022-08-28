@@ -2,6 +2,9 @@ package br.edu.infnet.model.domain;
 
 import java.math.BigDecimal;
 
+import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
+
 public class Tributo extends Conta {
 	private BigDecimal ICMS;
 	private BigDecimal IOF;
@@ -50,6 +53,14 @@ public class Tributo extends Conta {
 	@Override
 	public String toString() {
 		return "ICMS: R$ " + ICMS + ", IOF: R$ " + IOF + ", ISS: R$ " + ISS + "\n" + super.toString();
+	}
+
+	@Override
+	public boolean mostraContaAtiva() throws ConsumoInvalidoException, ImpostoInvalidoException {
+		if(ICMS==BigDecimal.ZERO) {
+			throw new ImpostoInvalidoException("");
+		}
+		return true;
 	}
 
 }

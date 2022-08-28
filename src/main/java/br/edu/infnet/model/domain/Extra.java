@@ -1,5 +1,9 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
+
 public class Extra extends Conta {
 	private Integer numeroDeParcelas;
 	private boolean pagamentoLote;
@@ -47,5 +51,15 @@ public class Extra extends Conta {
 		return "Quantidade de Parcelas: " + numeroDeParcelas + "\n é pagamento em lote? " + pagamentoLote
 				+ "\n é pagamento único? " + pagamentoUnico + "\n" + super.toString();
 	}
+
+	@Override
+	public boolean mostraContaAtiva() throws ConsumoInvalidoException, ImpostoInvalidoException, QuantidadeDeParcelasInvalidaException {
+		if(numeroDeParcelas==0) {
+			throw new QuantidadeDeParcelasInvalidaException("a quantidade de parcelas deve ser maior que zero");
+		}
+		return true;
+	}
+
+	
 
 }

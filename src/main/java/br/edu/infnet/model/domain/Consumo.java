@@ -1,9 +1,24 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
+
 public class Consumo extends Conta {
 	private String item;
 	private Integer quantidadeDeItens;
 	private String individualOuGrupo;
+
+	public Consumo() {
+		super();
+	}
+
+	public Consumo(String item, Integer quantidadeDeItens, String individualOuGrupo) {
+		super();
+		this.item = item;
+		this.quantidadeDeItens = quantidadeDeItens;
+		this.individualOuGrupo = individualOuGrupo;
+	}
 
 	public String getItem() {
 		return item;
@@ -37,8 +52,17 @@ public class Consumo extends Conta {
 
 	@Override
 	public void impressao() {
-		System.out.println("#Consumo");
-		System.out.println(this);
 	}
+
+	@Override
+	public boolean mostraContaAtiva()
+			throws ConsumoInvalidoException, ImpostoInvalidoException, QuantidadeDeParcelasInvalidaException {
+		if(item.isEmpty()) {
+			throw new ConsumoInvalidoException("o item vazio faz com que o consumo seja inválido");
+		}
+		return false;
+	}
+
+	
 
 }
