@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.model.domain.Consumo;
 import br.edu.infnet.model.test.AppImpressao;
@@ -39,6 +40,14 @@ public class ConsumoController {
 		model.addAttribute("listagem", obterLista());
         return "consumo/lista";
     }
+    
+    @PostMapping(value = "/consumo/incluir")
+	public String inclusao(Consumo consumo) {
+		
+		incluir(consumo);
+		
+		return "redirect:/";
+	}
     
     @GetMapping(value = "/consumo/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {

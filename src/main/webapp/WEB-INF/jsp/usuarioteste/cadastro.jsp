@@ -11,6 +11,8 @@
 </head>
 <html>
    <body>
+   
+      <c:import url="/WEB-INF/jsp/menu.jsp"/>
      <div class="container mt-3">
 		  <h2>cadastramento de usuários</h2>
 		  <form action="/usuario/incluir" method="post">

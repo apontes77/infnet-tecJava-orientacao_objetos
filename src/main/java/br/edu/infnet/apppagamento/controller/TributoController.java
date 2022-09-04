@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.model.domain.Tributo;
 import br.edu.infnet.model.test.AppImpressao;
@@ -39,6 +40,13 @@ public class TributoController {
 		return "tributo/lista";
 	}
 	
+	@PostMapping(value = "/tributo/incluir")
+	public String inclusao(Tributo tributo) {
+		
+		incluir(tributo);
+		
+		return "redirect:/";
+	}
 	
 	@GetMapping(value = "/tributo/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {

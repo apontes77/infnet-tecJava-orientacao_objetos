@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.edu.infnet.model.domain.Usuario;
+
 @Controller
 public class AppController {
 
@@ -21,9 +23,12 @@ public class AppController {
     
     @PostMapping(value = "/login")
     public String login(Model model,@RequestParam String email,@RequestParam String senha) {
-    	if(email.equalsIgnoreCase(senha)) {
-    		String nome = "Admin";
-    		model.addAttribute("user", nome);
+    	
+    	Usuario u = UsuarioController.validar(email, senha);
+    	
+    	if(u!=null) {
+    		
+    		model.addAttribute("user", u.getNome());
     		
     		return "home";
     	}

@@ -14,7 +14,7 @@ public class UsuarioTeste implements ApplicationRunner{
 	public void run(ApplicationArguments args) throws Exception {
 		Usuario u = new Usuario();
 		u.setEmail("admin@admin.com");
-		u.setNome("adsa");
+		u.setNome("admin");
 		u.setSenha("123");
 		
 		UsuarioController.incluir(u);
