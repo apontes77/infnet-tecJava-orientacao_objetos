@@ -1,4 +1,4 @@
-package br.edu.infnet.model.controller;
+package br.edu.infnet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

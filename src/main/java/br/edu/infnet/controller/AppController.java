@@ -1,4 +1,4 @@
-package br.edu.infnet.model.controller;
+package br.edu.infnet.controller;
 
 import javax.servlet.http.HttpSession;
 
