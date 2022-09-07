@@ -1,4 +1,4 @@
-package br.edu.infnet.apppagamento.controller;
+package br.edu.infnet.model.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.model.domain.Pagamento;
-import br.edu.infnet.model.domain.service.PagamentoService;
+import br.edu.infnet.model.service.PagamentoService;
 
 @Controller
 public class PagamentoController {

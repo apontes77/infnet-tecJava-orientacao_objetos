@@ -1,4 +1,4 @@
-package br.edu.infnet.apppagamento.controller;
+package br.edu.infnet.model.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,33 +7,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.edu.infnet.model.domain.Cliente;
-import br.edu.infnet.model.domain.service.ClienteService;
+import br.edu.infnet.model.domain.Consumo;
+import br.edu.infnet.model.service.ConsumoService;
 
 @Controller
-public class ClienteController {
+public class ConsumoController {
 	
 	@Autowired
-	private ClienteService service;
+	private ConsumoService service;
 	
-    @GetMapping(value = "/cliente/lista")
-    public String telaCliente(Model model) {
-
+    @GetMapping(value = "/consumo/lista")
+    public String telaConsumo(Model model) {	
 		model.addAttribute("listagem", service.obterLista());
-        return "cliente/lista";
+        return "consumo/lista";
     }
     
-    @PostMapping(value = "/cliente/incluir")
-	public String inclusao(Cliente cliente) {
+    @PostMapping(value = "/consumo/incluir")
+	public String inclusao(Consumo consumo) {
 		
-    	service.incluir(cliente);
+    	service.incluir(consumo);
 		
 		return "redirect:/";
 	}
     
-    @GetMapping(value = "/cliente/{id}/excluir")
+    @GetMapping(value = "/consumo/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
     	service.excluir(id);
-    	return "redirect:/cliente/lista";
+    
+    	return "redirect:/consumo/lista";
     }
 }

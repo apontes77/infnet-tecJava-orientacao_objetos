@@ -6,8 +6,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Cliente;
-import br.edu.infnet.model.domain.exceptions.CpfOuCnpjInvalidoException;
-import br.edu.infnet.model.domain.service.ClienteService;
+import br.edu.infnet.model.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.model.service.ClienteService;
 
 @Component
 public class ClienteTeste implements ApplicationRunner {

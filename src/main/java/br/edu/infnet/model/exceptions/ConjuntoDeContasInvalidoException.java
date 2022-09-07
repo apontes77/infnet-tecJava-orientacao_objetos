@@ -1,4 +1,4 @@
-package br.edu.infnet.model.domain.exceptions;
+package br.edu.infnet.model.exceptions;
 
 public class ConjuntoDeContasInvalidoException extends Exception {
 

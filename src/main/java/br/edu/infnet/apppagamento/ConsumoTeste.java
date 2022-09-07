@@ -6,10 +6,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Consumo;
-import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
-import br.edu.infnet.model.domain.service.ConsumoService;
+import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.service.ConsumoService;
 
 @Component
 public class ConsumoTeste implements ApplicationRunner {

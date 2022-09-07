@@ -2,8 +2,8 @@ package br.edu.infnet.model.domain;
 
 import java.math.BigDecimal;
 
-import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
 
 public class Tributo extends Conta {
 	private BigDecimal ICMS;

@@ -2,10 +2,10 @@ package br.edu.infnet.model.domain;
 
 import java.util.Objects;
 
-import br.edu.infnet.apppagamento.interfaces.IPrinter;
-import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.interfaces.IPrinter;
 
 public abstract class Conta implements IPrinter {
 	private Integer id;

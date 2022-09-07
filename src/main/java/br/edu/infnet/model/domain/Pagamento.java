@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import br.edu.infnet.apppagamento.interfaces.IPrinter;
-import br.edu.infnet.model.domain.exceptions.ClienteInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ConjuntoDeContasInvalidoException;
+import br.edu.infnet.model.exceptions.ClienteInvalidoException;
+import br.edu.infnet.model.exceptions.ConjuntoDeContasInvalidoException;
+import br.edu.infnet.model.interfaces.IPrinter;
 
 public class Pagamento implements IPrinter {
 	private Integer id;

@@ -6,10 +6,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Extra;
-import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
-import br.edu.infnet.model.domain.service.ExtraService;
+import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.service.ExtraService;
 
 @Component
 public class ExtraTeste implements ApplicationRunner {
@@ -17,7 +17,6 @@ public class ExtraTeste implements ApplicationRunner {
 	@Autowired
 	private ExtraService service;
 	
-
 	@Override
 	public void run(ApplicationArguments args)  {
 

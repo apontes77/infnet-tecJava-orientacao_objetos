@@ -1,4 +1,4 @@
-package br.edu.infnet.model.domain.exceptions;
+package br.edu.infnet.model.exceptions;
 
 public class CpfOuCnpjInvalidoException extends Exception {
 

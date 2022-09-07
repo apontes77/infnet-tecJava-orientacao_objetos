@@ -9,9 +9,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.Tributo;
-import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.model.domain.service.TributoService;
+import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.service.TributoService;
 
 @Component
 public class TributoTeste implements ApplicationRunner {

@@ -1,4 +1,4 @@
-package br.edu.infnet.model.domain.exceptions;
+package br.edu.infnet.model.exceptions;
 
 public class ImpostoInvalidoException extends Exception {
 private static final long serialVersionUID = 1L;

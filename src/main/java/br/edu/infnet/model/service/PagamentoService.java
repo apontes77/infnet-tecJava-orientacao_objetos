@@ -1,4 +1,4 @@
-package br.edu.infnet.model.domain.service;
+package br.edu.infnet.model.service;
 
 import java.util.Collection;
 import java.util.HashMap;

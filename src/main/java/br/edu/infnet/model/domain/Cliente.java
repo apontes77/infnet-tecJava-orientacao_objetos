@@ -1,14 +1,19 @@
 package br.edu.infnet.model.domain;
 
-import br.edu.infnet.apppagamento.interfaces.IPrinter;
-import br.edu.infnet.model.domain.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.model.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.model.interfaces.IPrinter;
 
 public class Cliente implements IPrinter {
 	private Integer id;
 	private String nome;
 	private String email;
 	private String cpfOuCpnj;
+	
 
+	public Cliente() {
+	}
+	
+	
 	public Cliente(Integer id, String nome, String email, String cpfOuCpnj) throws CpfOuCnpjInvalidoException{
 		if(cpfOuCpnj == null) {
 			throw new CpfOuCnpjInvalidoException("CPF ou CNPJ não pode ser nulo");

@@ -1,8 +1,8 @@
 package br.edu.infnet.model.domain;
 
-import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.exceptions.QuantidadeDeParcelasInvalidaException;
 
 public class Extra extends Conta {
 	private Integer numeroDeParcelas;

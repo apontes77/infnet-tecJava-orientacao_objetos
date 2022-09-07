@@ -1,4 +1,4 @@
-package br.edu.infnet.apppagamento.controller;
+package br.edu.infnet.model.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import br.edu.infnet.model.domain.Usuario;
-import br.edu.infnet.model.domain.service.UsuarioService;
+import br.edu.infnet.model.service.UsuarioService;
 
 @SessionAttributes("user")
 @Controller

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import br.edu.infnet.apppagamento.interfaces.IPrinter;
+import br.edu.infnet.model.interfaces.IPrinter;
 
 public class AppImpressao {
 	public static void relatorio(String mensagem, IPrinter printer) {

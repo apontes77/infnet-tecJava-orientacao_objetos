@@ -19,10 +19,10 @@ import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.Consumo;
 import br.edu.infnet.model.domain.Conta;
 import br.edu.infnet.model.domain.Pagamento;
-import br.edu.infnet.model.domain.exceptions.ClienteInvalidoException;
-import br.edu.infnet.model.domain.exceptions.ConjuntoDeContasInvalidoException;
-import br.edu.infnet.model.domain.exceptions.CpfOuCnpjInvalidoException;
-import br.edu.infnet.model.domain.service.PagamentoService;
+import br.edu.infnet.model.exceptions.ClienteInvalidoException;
+import br.edu.infnet.model.exceptions.ConjuntoDeContasInvalidoException;
+import br.edu.infnet.model.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.model.service.PagamentoService;
 
 @Component
 @Order(1)
