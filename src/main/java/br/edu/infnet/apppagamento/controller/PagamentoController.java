@@ -1,9 +1,6 @@
 package br.edu.infnet.apppagamento.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,32 +8,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.model.domain.Pagamento;
-import br.edu.infnet.model.test.AppImpressao;
+import br.edu.infnet.model.domain.service.PagamentoService;
 
 @Controller
 public class PagamentoController {
 	
-	private static Map<Integer, Pagamento> mapaPagamento = new HashMap<>();
-
-	private static Integer id = 1;
-	
-	public static Collection<Pagamento> obterLista() {
-		return mapaPagamento.values();
-	}
-
-	public static void incluir(Pagamento pagamento) {
-		pagamento.setId(id++);
-		mapaPagamento.put(pagamento.getId(), pagamento);
-		AppImpressao.relatorio("Pagamento: ", pagamento);
-	}
-	
-	public static void excluir(Integer id) {
-		mapaPagamento.remove(id);
-	}
+	@Autowired
+	private PagamentoService service;
 
     @GetMapping(value = "/pagamento/lista")
     public String telaPagamento(Model model) {
-    	model.addAttribute("listagem", obterLista());
+    	model.addAttribute("listagem", service.obterLista());
     	
         return "pagamento/lista";
     }
@@ -44,14 +26,14 @@ public class PagamentoController {
     @PostMapping(value = "/pagamento/incluir")
 	public String inclusao(Pagamento pagamento) {
 		
-		incluir(pagamento);
+    	service.incluir(pagamento);
 		
 		return "redirect:/";
 	}
     
     @GetMapping(value = "/pagamento/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
-    	excluir(id);
+    	service.excluir(id);
     	return "redirect:/pagamento/lista";
     }
 }

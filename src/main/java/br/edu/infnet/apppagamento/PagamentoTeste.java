@@ -9,12 +9,12 @@ import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppagamento.controller.PagamentoController;
 import br.edu.infnet.model.domain.Cliente;
 import br.edu.infnet.model.domain.Consumo;
 import br.edu.infnet.model.domain.Conta;
@@ -22,10 +22,15 @@ import br.edu.infnet.model.domain.Pagamento;
 import br.edu.infnet.model.domain.exceptions.ClienteInvalidoException;
 import br.edu.infnet.model.domain.exceptions.ConjuntoDeContasInvalidoException;
 import br.edu.infnet.model.domain.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.model.domain.service.PagamentoService;
 
 @Component
 @Order(1)
 public class PagamentoTeste implements ApplicationRunner {
+	
+	@Autowired
+	private PagamentoService service;
+
 
 	@Override
 	public void run(ApplicationArguments args) throws FileNotFoundException{
@@ -72,7 +77,7 @@ public class PagamentoTeste implements ApplicationRunner {
 					p1.setBandeira(campos[1]);
 					p1.setValor(BigDecimal.valueOf(Double.valueOf(campos[2])));
 
-					PagamentoController.incluir(p1);	
+					service.incluir(p1);	
 				} catch (ConjuntoDeContasInvalidoException e) {
 					System.out.println("ERROR: "+e.getMessage());
 				} catch (ClienteInvalidoException e) {
@@ -101,7 +106,7 @@ public class PagamentoTeste implements ApplicationRunner {
 			p2.setBandeira("visa");
 			p2.setValor(new BigDecimal(25.90).setScale(2, RoundingMode.DOWN));
 
-			PagamentoController.incluir(p2);
+			service.incluir(p2);
 
 		} catch(ClienteInvalidoException | ConjuntoDeContasInvalidoException e) {
 			System.out.println("[ERROR: ]"+e.getMessage());	

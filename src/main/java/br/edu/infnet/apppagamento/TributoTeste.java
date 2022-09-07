@@ -3,17 +3,22 @@ package br.edu.infnet.apppagamento;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppagamento.controller.TributoController;
 import br.edu.infnet.model.domain.Tributo;
 import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
 import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.model.domain.service.TributoService;
 
 @Component
 public class TributoTeste implements ApplicationRunner {
+
+	@Autowired
+	private TributoService service;
+
 
 	@Override
 	public void run(ApplicationArguments args){
@@ -30,7 +35,7 @@ public class TributoTeste implements ApplicationRunner {
 			t1.setContaAtiva(true);
 			t1.setDescricao("conta para experts");
 			t1.mostraContaAtiva();
-			TributoController.incluir(t1);
+			service.incluir(t1);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
@@ -46,7 +51,7 @@ public class TributoTeste implements ApplicationRunner {
 		t2.setContaAtiva(true);
 		t2.setDescricao("conta para day traders");
 		t2.mostraContaAtiva();
-		TributoController.incluir(t2);
+		service.incluir(t2);
 		}catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
@@ -64,7 +69,7 @@ public class TributoTeste implements ApplicationRunner {
 			t3.setDescricao("conta para estudantes");
 			t3.mostraContaAtiva();
 
-			TributoController.incluir(t3);
+			service.incluir(t3);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {

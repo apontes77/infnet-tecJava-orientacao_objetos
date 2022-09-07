@@ -1,17 +1,22 @@
 package br.edu.infnet.apppagamento;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppagamento.controller.ConsumoController;
 import br.edu.infnet.model.domain.Consumo;
 import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
 import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
 import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.domain.service.ConsumoService;
 
 @Component
 public class ConsumoTeste implements ApplicationRunner {
+	
+	@Autowired
+	private ConsumoService service;
+
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -28,7 +33,7 @@ public class ConsumoTeste implements ApplicationRunner {
 			c1.setDescricao("conta presidencial");
 			c1.setId(123);
 			c1.mostraContaAtiva();
-			ConsumoController.incluir(c1);
+			service.incluir(c1);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
@@ -47,7 +52,7 @@ public class ConsumoTeste implements ApplicationRunner {
 			c2.setDescricao("conta do deputado");
 			c2.setId(321);
 			c2.mostraContaAtiva();
-			ConsumoController.incluir(c2);
+			service.incluir(c2);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
@@ -66,7 +71,7 @@ public class ConsumoTeste implements ApplicationRunner {
 			c3.setDescricao("conta comum");
 			c3.setId(222);
 			c3.mostraContaAtiva();
-			ConsumoController.incluir(c3);
+			service.incluir(c3);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {

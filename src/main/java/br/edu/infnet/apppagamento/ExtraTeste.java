@@ -1,17 +1,22 @@
 package br.edu.infnet.apppagamento;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.apppagamento.controller.ExtraController;
 import br.edu.infnet.model.domain.Extra;
 import br.edu.infnet.model.domain.exceptions.ConsumoInvalidoException;
 import br.edu.infnet.model.domain.exceptions.ImpostoInvalidoException;
 import br.edu.infnet.model.domain.exceptions.QuantidadeDeParcelasInvalidaException;
+import br.edu.infnet.model.domain.service.ExtraService;
 
 @Component
 public class ExtraTeste implements ApplicationRunner {
+	
+	@Autowired
+	private ExtraService service;
+	
 
 	@Override
 	public void run(ApplicationArguments args)  {
@@ -28,7 +33,7 @@ public class ExtraTeste implements ApplicationRunner {
 			e1.setContaAtiva(true);
 			e1.setDescricao("conta para experts");
 			e1.mostraContaAtiva();
-			ExtraController.incluir(e1);
+			service.incluir(e1);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
@@ -47,7 +52,7 @@ public class ExtraTeste implements ApplicationRunner {
 			e2.setContaAtiva(true);
 			e2.setDescricao("conta para day traders");
 			e2.mostraContaAtiva();
-			ExtraController.incluir(e2);
+			service.incluir(e2);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
@@ -65,7 +70,7 @@ public class ExtraTeste implements ApplicationRunner {
 			e3.setContaAtiva(true);
 			e3.setDescricao("conta para estudantes");
 			e3.mostraContaAtiva();
-			ExtraController.incluir(e3);
+			service.incluir(e3);
 		} catch (ConsumoInvalidoException e) {
 			System.out.println("[ERROR] "+e.getMessage());
 		} catch (ImpostoInvalidoException e) {
