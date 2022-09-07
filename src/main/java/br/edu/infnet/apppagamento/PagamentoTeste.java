@@ -1,5 +1,19 @@
 package br.edu.infnet.apppagamento;
 
+import br.edu.infnet.apppagamento.model.domain.Cliente;
+import br.edu.infnet.apppagamento.model.domain.Consumo;
+import br.edu.infnet.apppagamento.model.domain.Conta;
+import br.edu.infnet.apppagamento.model.domain.Pagamento;
+import br.edu.infnet.apppagamento.model.exceptions.ClienteInvalidoException;
+import br.edu.infnet.apppagamento.model.exceptions.ConjuntoDeContasInvalidoException;
+import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.apppagamento.model.service.PagamentoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,21 +22,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-
-import br.edu.infnet.model.domain.Cliente;
-import br.edu.infnet.model.domain.Consumo;
-import br.edu.infnet.model.domain.Conta;
-import br.edu.infnet.model.domain.Pagamento;
-import br.edu.infnet.model.exceptions.ClienteInvalidoException;
-import br.edu.infnet.model.exceptions.ConjuntoDeContasInvalidoException;
-import br.edu.infnet.model.exceptions.CpfOuCnpjInvalidoException;
-import br.edu.infnet.model.service.PagamentoService;
 
 @Component
 @Order(1)

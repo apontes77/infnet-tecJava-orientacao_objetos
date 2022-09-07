@@ -1,17 +1,16 @@
 package br.edu.infnet.apppagamento;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
+import br.edu.infnet.apppagamento.model.domain.Usuario;
+import br.edu.infnet.apppagamento.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.model.domain.Usuario;
-import br.edu.infnet.model.service.UsuarioService;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 @Component
 public class UsuarioTeste implements ApplicationRunner{
@@ -19,7 +18,7 @@ public class UsuarioTeste implements ApplicationRunner{
 	@Autowired
 	private UsuarioService service;
 	
-	private Usuario usuario;
+	private Usuario usuario = new Usuario();
 
 
 	@Override

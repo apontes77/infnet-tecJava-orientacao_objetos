@@ -1,13 +1,12 @@
 package br.edu.infnet.apppagamento;
 
+import br.edu.infnet.apppagamento.model.domain.Cliente;
+import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
+import br.edu.infnet.apppagamento.model.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
-import br.edu.infnet.model.domain.Cliente;
-import br.edu.infnet.model.exceptions.CpfOuCnpjInvalidoException;
-import br.edu.infnet.model.service.ClienteService;
 
 @Component
 public class ClienteTeste implements ApplicationRunner {

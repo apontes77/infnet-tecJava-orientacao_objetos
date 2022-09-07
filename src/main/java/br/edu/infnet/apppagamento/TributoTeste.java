@@ -1,17 +1,16 @@
 package br.edu.infnet.apppagamento;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
+import br.edu.infnet.apppagamento.model.domain.Tributo;
+import br.edu.infnet.apppagamento.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.apppagamento.model.exceptions.ImpostoInvalidoException;
+import br.edu.infnet.apppagamento.model.service.TributoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.model.domain.Tributo;
-import br.edu.infnet.model.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.model.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.model.service.TributoService;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Component
 public class TributoTeste implements ApplicationRunner {
