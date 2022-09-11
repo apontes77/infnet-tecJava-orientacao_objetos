@@ -3,6 +3,8 @@ package br.edu.infnet.apppagamento;
 import br.edu.infnet.apppagamento.model.domain.app.Atributo;
 import br.edu.infnet.apppagamento.model.domain.app.Classe;
 import br.edu.infnet.apppagamento.model.domain.app.Projeto;
+import br.edu.infnet.apppagamento.model.service.AppService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -12,18 +14,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class AppTeste implements ApplicationRunner{
 
+	@Autowired
+	private AppService appService;
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
 		
-		String dir = "/home/alexandre/";
-		String arq = "usuarios.txt";
+		String dir = "/home/alexandre/app/";
+		String arq = "app.txt";
 	
 		try {
 			try {
@@ -31,14 +34,40 @@ public class AppTeste implements ApplicationRunner{
 			FileReader fileReader = new FileReader(dir+arq);
 			BufferedReader leitura = new BufferedReader(fileReader);
 			String linha = leitura.readLine();
+			Projeto projeto = null;
+			List<Classe> classes = null;
+			List<Atributo> atributos = null;
 			
 			while(linha != null) {
 				
-					String[] campos = linha.split(";");
+				String[] campos = linha.split(";");
+				switch (campos[0].toUpperCase()) {
+					case "P" -> {
+						classes = new ArrayList<>();
+						projeto = new Projeto();
+						projeto.setNome(campos[1]);
+						projeto.setDescricaoProjeto(campos[2]);
+						projeto.setClasses(classes);
+					}
+					case "C" -> {
+						atributos = new ArrayList<>();
+						Classe classe = new Classe();
+						classe.setNome(campos[1]);
+						classe.setAtributos(atributos);
+						classes.add(classe);
+					}
 
-					linha = leitura.readLine();
+					case "A" -> {
+						Atributo atributo = new Atributo(campos[1], campos[2], campos[3]);
+						atributos.add(atributo);
+					}
+					default -> System.out.println("Opção inválida");
+				}
+
+				linha = leitura.readLine();
 			}
-			
+			appService.incluir(projeto);
+
 			leitura.close();
 			fileReader.close();
 			
@@ -51,50 +80,6 @@ public class AppTeste implements ApplicationRunner{
 			System.out.println("TERMINOU!!!");
 		}
 
-
-		Classe cliente = new Classe();
-		cliente.setNome("Cliente");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		Classe consumo = new Classe();
-		cliente.setNome("consumo");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		Classe conta = new Classe();
-		cliente.setNome("conta");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		Classe extra = new Classe();
-		cliente.setNome("extra");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		Classe pagamento = new Classe();
-		cliente.setNome("pagamento");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		Classe tributo = new Classe();
-		cliente.setNome("tributo");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		Classe usuario = new Classe();
-		cliente.setNome("usuario");
-		cliente.setAtributos(List.of(new Atributo("nome", "tipo", "descricao")));
-
-		List<Classe> classes = new ArrayList<>();
-		classes.add(cliente);
-		classes.add(consumo);
-		classes.add(conta);
-		classes.add(extra);
-		classes.add(pagamento);
-		classes.add(tributo);
-		classes.add(usuario);
-
-
-		Projeto projeto = new Projeto();
-		projeto.setNome("AppPagamento");
-		projeto.setDescricaoProjeto("Projeto de Pagamentos");
-		projeto.setClasses(classes);
-		projeto.impressao();
 	}
 
 }
