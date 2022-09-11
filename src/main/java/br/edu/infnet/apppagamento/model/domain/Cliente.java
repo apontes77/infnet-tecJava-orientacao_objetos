@@ -1,7 +1,7 @@
 package br.edu.infnet.apppagamento.model.domain;
 
 import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
-import br.edu.infnet.apppagamento.model.interfaces.IPrinter;
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
 public class Cliente implements IPrinter {
 	private Integer id;

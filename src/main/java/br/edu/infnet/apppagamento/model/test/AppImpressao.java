@@ -1,6 +1,6 @@
 package br.edu.infnet.apppagamento.model.test;
 
-import br.edu.infnet.apppagamento.model.interfaces.IPrinter;
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

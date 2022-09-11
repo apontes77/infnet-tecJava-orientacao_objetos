@@ -14,11 +14,8 @@ import java.math.RoundingMode;
 
 @Component
 public class TributoTeste implements ApplicationRunner {
-
 	@Autowired
 	private TributoService service;
-
-
 	@Override
 	public void run(ApplicationArguments args){
 		System.out.println("# Tributo #");

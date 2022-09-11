@@ -1,5 +1,6 @@
 package br.edu.infnet.apppagamento.model.domain;
 
+
 import br.edu.infnet.apppagamento.model.exceptions.ConsumoInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.ImpostoInvalidoException;
 
@@ -57,9 +58,7 @@ public class Tributo extends Conta {
 
 	@Override
 	public boolean mostraContaAtiva() throws ConsumoInvalidoException, ImpostoInvalidoException {
-		if(ICMS==BigDecimal.ZERO) {
-			throw new ImpostoInvalidoException("");
-		}
+		if(ICMS==BigDecimal.ZERO) throw new ImpostoInvalidoException("");
 		return true;
 	}
 

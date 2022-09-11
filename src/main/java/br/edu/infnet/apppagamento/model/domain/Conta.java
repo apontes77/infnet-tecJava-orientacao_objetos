@@ -3,7 +3,7 @@ package br.edu.infnet.apppagamento.model.domain;
 import br.edu.infnet.apppagamento.model.exceptions.ConsumoInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.ImpostoInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.QuantidadeDeParcelasInvalidaException;
-import br.edu.infnet.apppagamento.model.interfaces.IPrinter;
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
 import java.util.Objects;
 

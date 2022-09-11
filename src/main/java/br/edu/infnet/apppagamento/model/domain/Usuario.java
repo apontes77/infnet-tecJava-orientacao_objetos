@@ -1,6 +1,6 @@
 package br.edu.infnet.apppagamento.model.domain;
 
-import br.edu.infnet.apppagamento.model.interfaces.IPrinter;
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
 public class Usuario implements IPrinter {
 	private String nome;

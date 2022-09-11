@@ -2,7 +2,7 @@ package br.edu.infnet.apppagamento.model.domain;
 
 import br.edu.infnet.apppagamento.model.exceptions.ClienteInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.ConjuntoDeContasInvalidoException;
-import br.edu.infnet.apppagamento.model.interfaces.IPrinter;
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
