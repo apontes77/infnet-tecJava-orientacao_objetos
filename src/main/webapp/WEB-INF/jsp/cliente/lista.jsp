@@ -14,7 +14,8 @@
       
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
       <div class="container mt-3">
-         <h4>Classe: Cliente</h4>
+         <h3>Clientes</h3>
+         <h4><a href="/cliente">Incluir</a></h4>
          <table class="table table-striped">
             <thead>
                <tr>

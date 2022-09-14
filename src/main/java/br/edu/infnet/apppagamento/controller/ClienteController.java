@@ -21,13 +21,18 @@ public class ClienteController {
 		model.addAttribute("listagem", service.obterLista());
         return "cliente/lista";
     }
+
+	@GetMapping(value = "/cliente")
+	public String telaCadastro() {
+		return "cliente/cadastro";
+	}
     
     @PostMapping(value = "/cliente/incluir")
 	public String inclusao(Cliente cliente) {
 		
     	service.incluir(cliente);
 		
-		return "redirect:/";
+		return "redirect:/cliente/lista";
 	}
     
     @GetMapping(value = "/cliente/{id}/excluir")

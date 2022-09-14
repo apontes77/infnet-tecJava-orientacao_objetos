@@ -14,7 +14,7 @@
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
       
          <div class="container mt-3">
-		  <h2>Stacked form</h2>
+		  <h2>Autenticação</h2>
 		  <form action="" method="post">
 		    <div class="mb-3 mt-3">	
 		      <label for="email">Email:</label>
@@ -26,7 +26,7 @@
 		      <input type="password" class="form-control" placeholder="Enter password" name="senha">
 		    </div>
 		    
-		    <button type="submit" class="btn btn-primary">Submit</button>
+		    <button type="submit" class="btn btn-primary">Entrar</button>
 		  </form>
 		</div>
 		

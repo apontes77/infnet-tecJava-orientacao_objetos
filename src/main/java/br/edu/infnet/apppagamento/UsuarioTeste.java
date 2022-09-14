@@ -29,7 +29,7 @@ public class UsuarioTeste implements ApplicationRunner{
 		
 		service.incluir(usuario);
 		
-		String dir = "/home/alexandre/";
+		String dir = "src/main/resources/files/";
 		String arq = "usuarios.txt";
 	
 		try {

@@ -8,6 +8,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
 public class ClienteTeste implements ApplicationRunner {
 	
@@ -18,42 +23,40 @@ public class ClienteTeste implements ApplicationRunner {
 	public void run(ApplicationArguments args) {
 		System.out.println("# Cliente #");
 		System.out.println("\n");
-		
+
+		String dir = "src/main/resources/files/";
+		String arq = "cliente.txt";
+
 		try {
-			Cliente c1 = new Cliente(1, "Arnold", "arnold@mail.com", "224.314.760-22");
-			service.incluir(c1);
-		} catch (CpfOuCnpjInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-		try {
-			Cliente c2 = new Cliente(2, "Martin", "martin@mail.com", "380.335.400-52");
-			service.incluir(c2);
-		} catch (CpfOuCnpjInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-		try {
-			Cliente c3 = new Cliente(3, "Isabel", "isabel@mail.com", "478.635.810-01");
-			service.incluir(c3);
-		} catch (CpfOuCnpjInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		try {
-			Cliente c4 = new Cliente(3, "Isabel", "isabel@mail.com", "");
-			service.incluir(c4);
-		} catch (CpfOuCnpjInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		try {
-			Cliente c5 = new Cliente(3, "Isabel", "isabel@mail.com", null);
-			service.incluir(c5);
-		} catch (CpfOuCnpjInvalidoException e) {
-			System.out.println(e.getMessage());
+			try {
+
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				String linha = leitura.readLine();
+
+				while(linha != null) {
+
+					String[] campos = linha.split(";");
+
+					try {
+						Cliente cliente = new Cliente(Integer.valueOf(campos[0]), campos[1],campos[2],campos[3]);
+						service.incluir(cliente);
+					} catch (CpfOuCnpjInvalidoException e) {
+						System.out.println(e.getMessage());
+					}
+					linha = leitura.readLine();
+				}
+
+				leitura.close();
+				fileReader.close();
+
+			} catch (FileNotFoundException e) {
+				System.out.println("ERROR: "+e.getMessage());
+			} catch(IOException e) {
+				System.out.println("ERROR: "+e.getMessage());
+			}
+		} finally {
+			System.out.println("TERMINOU!!!");
 		}
 		
 	}

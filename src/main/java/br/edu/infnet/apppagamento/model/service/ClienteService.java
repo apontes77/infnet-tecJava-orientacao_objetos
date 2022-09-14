@@ -1,6 +1,6 @@
 package br.edu.infnet.apppagamento.model.service;
 
-import br.edu.infnet.apppagamento.model.domain.Cliente;
+import  br.edu.infnet.apppagamento.model.domain.Cliente;
 import br.edu.infnet.apppagamento.model.test.AppImpressao;
 import org.springframework.stereotype.Service;
 

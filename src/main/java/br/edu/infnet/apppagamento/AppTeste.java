@@ -25,7 +25,7 @@ public class AppTeste implements ApplicationRunner{
 	public void run(ApplicationArguments args) throws Exception {
 
 		
-		String dir = "/home/alexandre/app/";
+		String dir = "src/main/resources/files/";
 		String arq = "app.txt";
 	
 		try {

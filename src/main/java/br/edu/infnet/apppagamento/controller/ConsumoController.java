@@ -20,19 +20,19 @@ public class ConsumoController {
 		model.addAttribute("listagem", service.obterLista());
         return "consumo/lista";
     }
+
+	@GetMapping(value = "/consumo")
+	public String telaConsumo(){ return "consumo/cadastro";}
     
     @PostMapping(value = "/consumo/incluir")
 	public String inclusao(Consumo consumo) {
-		
     	service.incluir(consumo);
-		
-		return "redirect:/";
+		return "redirect:/consumo/lista";
 	}
     
     @GetMapping(value = "/consumo/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
     	service.excluir(id);
-    
     	return "redirect:/consumo/lista";
     }
 }

@@ -14,7 +14,8 @@
       
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
       <div class="container mt-3">
-         <h4>Classe: Consumo</h4>
+         <h3>Lista de Consumo</h3>
+         <h4><a href="/consumo">Incluir</a></h4>
          <table class="table table-striped">
             <thead>
                <tr>

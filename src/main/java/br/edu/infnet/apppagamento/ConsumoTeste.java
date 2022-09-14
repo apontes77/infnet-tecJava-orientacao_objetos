@@ -1,7 +1,9 @@
 package br.edu.infnet.apppagamento;
 
+import br.edu.infnet.apppagamento.model.domain.Cliente;
 import br.edu.infnet.apppagamento.model.domain.Consumo;
 import br.edu.infnet.apppagamento.model.exceptions.ConsumoInvalidoException;
+import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.ImpostoInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.QuantidadeDeParcelasInvalidaException;
 import br.edu.infnet.apppagamento.model.service.ConsumoService;
@@ -9,6 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 @Component
 public class ConsumoTeste implements ApplicationRunner {
@@ -22,61 +29,31 @@ public class ConsumoTeste implements ApplicationRunner {
 		System.out.println("# Consumo #");
 		System.out.println("\n");
 
-		
-		try {
-			Consumo c1 = new Consumo();
-			c1.setItem("rodas 4x4");
-			c1.setQuantidadeDeItens(4);
-			c1.setIndividualOuGrupo("individual");
-			c1.setContaAtiva(true);
-			c1.setDescricao("conta presidencial");
-			c1.setId(123);
-			c1.mostraContaAtiva();
-			service.incluir(c1);
-		} catch (ConsumoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (ImpostoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (QuantidadeDeParcelasInvalidaException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		}
-		
-		
-		try {
-			Consumo c2 = new Consumo();
-			c2.setItem("volante");
-			c2.setQuantidadeDeItens(1);
-			c2.setIndividualOuGrupo("individual");
-			c2.setContaAtiva(true);
-			c2.setDescricao("conta do deputado");
-			c2.setId(321);
-			c2.mostraContaAtiva();
-			service.incluir(c2);
-		} catch (ConsumoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (ImpostoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (QuantidadeDeParcelasInvalidaException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		}
+		String dir = "src/main/resources/files/";
+		String arq = "consumo.txt";
 
-		
 		try {
-			Consumo c3 = new Consumo();
-			c3.setItem("amortecedor");
-			c3.setQuantidadeDeItens(4);
-			c3.setIndividualOuGrupo("individual");
-			c3.setContaAtiva(true);
-			c3.setDescricao("conta comum");
-			c3.setId(222);
-			c3.mostraContaAtiva();
-			service.incluir(c3);
-		} catch (ConsumoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (ImpostoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (QuantidadeDeParcelasInvalidaException e) {
-			System.out.println("[ERROR] "+e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				String linha = leitura.readLine();
+				while(linha != null) {
+					String[] campos = linha.split(";");
+
+					Consumo c1 = new Consumo(campos[0], Integer.valueOf(campos[1]), campos[2]);
+					service.incluir(c1);
+
+					linha = leitura.readLine();
+				}
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("ERROR: "+e.getMessage());
+			} catch(IOException e) {
+				System.out.println("ERROR: "+e.getMessage());
+			}
+		} finally {
+			System.out.println("TERMINOU!!!");
 		}
 
 	}
