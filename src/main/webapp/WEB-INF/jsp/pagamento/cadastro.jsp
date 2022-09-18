@@ -17,42 +17,35 @@
 		 <table class="table table-striped">
 		  <form action="/pagamento/incluir" method="post">
 		    <div class="mb-3 mt-3">	
-		      <label for="numeroCartao">Número do Cartão:</label>
+		      <label for="numeroCartao">Número do Cartão</label>
 		      <input class="form-control" placeholder="Número do Cartão:" name="numeroCartao">
 		    </div>
 		    
 		    <div class="mb-3 mt-3">	
-		      <label for="bandeira">Bandeira:</label>
+		      <label for="bandeira">Bandeira</label>
 		      <input class="form-control" placeholder="bandeira:" name="bandeira">
 		    </div>
 		    
 		    <div class="mb-3">
-		      <label for="valor">Valor:</label>
+		      <label for="valor">Valor</label>
 		      <input class="form-control" placeholder="valor:" name="valor">
 		    </div>
 
 		  <div class="mb-3">
-			  <label for="cliente">Cliente:</label>
+			  <label for="cliente">Cliente</label>
 			  <select class="form-control" id="sel1">
-				  <option>1</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
+				  <c:forEach var="clientesList" items="${clientes}">
+				  <option>${clientesList.nome}</option>
+				  </c:forEach>
 			  </select>
 		  </div>
-
-
 		  <div class="mb-3">
-			  <label for="contas">Contas:</label>
+			  <label for="contas">Contas</label>
+			  <c:forEach var="contasList" items="${contas}">
 			  <div class="checkbox">
-				  <label><input type="checkbox" value="">Tributo</label>
+				  <label><input type="checkbox" value="">${contasList.descricao}</label>
 			  </div>
-			  <div class="checkbox">
-				  <label><input type="checkbox" value="">Extra</label>
-			  </div>
-			  <div class="checkbox">
-				  <label><input type="checkbox" value="">Consumo</label>
-			  </div>
+			  </c:forEach>
 		  </div>
 		    
 		    <button type="submit" class="btn btn-primary">Cadastrar</button>

@@ -9,7 +9,8 @@ public class Extra extends Conta {
 	private boolean pagamentoLote;
 	private boolean pagamentoUnico;
 
-	public Extra(Integer numeroDeParcelas, boolean pagamentoLote, boolean pagamentoUnico) {
+	public Extra(Integer id, String descricao, boolean contaAtiva, Integer numeroDeParcelas, boolean pagamentoLote, boolean pagamentoUnico) {
+		super(id, descricao, contaAtiva);
 		this.numeroDeParcelas = numeroDeParcelas;
 		this.pagamentoLote = pagamentoLote;
 		this.pagamentoUnico = pagamentoUnico;

@@ -11,6 +11,13 @@ public class Tributo extends Conta {
 	private BigDecimal IOF;
 	private BigDecimal ISS;
 
+	public Tributo(Integer id, String descricao, boolean contaAtiva, BigDecimal ICMS, BigDecimal IOF, BigDecimal ISS) {
+		super(id, descricao, contaAtiva);
+		this.ICMS = ICMS;
+		this.IOF = IOF;
+		this.ISS = ISS;
+	}
+
 	public Tributo() {
 	}
 

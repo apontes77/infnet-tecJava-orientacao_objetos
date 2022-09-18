@@ -5,7 +5,9 @@ import br.edu.infnet.apppagamento.model.exceptions.ConjuntoDeContasInvalidoExcep
 import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 
@@ -97,7 +99,6 @@ public class Pagamento implements IPrinter {
 	public void impressao() {
 		System.out.println("#pagamento");
 		System.out.println(this);
-
 	}
 
 }

@@ -4,12 +4,14 @@ import br.edu.infnet.apppagamento.model.domain.Consumo;
 import br.edu.infnet.apppagamento.model.service.ConsumoService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.cache.Cache;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 @Component
 public class ConsumoTeste implements ApplicationRunner {
@@ -36,8 +38,14 @@ public class ConsumoTeste implements ApplicationRunner {
 					while (linha != null) {
 						String[] campos = linha.split(";");
 						if ("C".equalsIgnoreCase(campos[0])) {
-						Consumo c1 = new Consumo(campos[1], Integer.valueOf(campos[2]), campos[3]);
-						service.incluir(c1);
+						Consumo consumo = new Consumo();
+						consumo.setId(Integer.valueOf(campos[1]));
+						consumo.setContaAtiva(true);
+						consumo.setDescricao(campos[2]);
+						consumo.setItem(campos[3]);
+						consumo.setQuantidadeDeItens(Integer.valueOf(campos[4]));
+						consumo.setIndividualOuGrupo(campos[5]);
+						service.incluir(consumo);
 					}
 					linha = leitura.readLine();
 				}

@@ -41,6 +41,7 @@ public class ExtraTeste implements ApplicationRunner {
 						extra.setNumeroDeParcelas(Integer.valueOf(campos[1]));
 						extra.setPagamentoLote(Boolean.parseBoolean(campos[2]));
 						extra.setPagamentoUnico(Boolean.parseBoolean(campos[3]));
+						extra.setDescricao(campos[4]);
 						service.incluir(extra);
 					}
 

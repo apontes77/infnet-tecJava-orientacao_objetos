@@ -10,15 +10,15 @@ public class Consumo extends Conta {
 	private Integer quantidadeDeItens;
 	private String individualOuGrupo;
 
-	public Consumo() {
-		super();
-	}
-
-	public Consumo(String item, Integer quantidadeDeItens, String individualOuGrupo) {
-		super();
+	public Consumo(Integer id, String descricao, boolean contaAtiva, String item, Integer quantidadeDeItens, String individualOuGrupo) {
+		super(id, descricao, contaAtiva);
 		this.item = item;
 		this.quantidadeDeItens = quantidadeDeItens;
 		this.individualOuGrupo = individualOuGrupo;
+	}
+
+	public Consumo() {
+		super();
 	}
 
 	public String getItem() {

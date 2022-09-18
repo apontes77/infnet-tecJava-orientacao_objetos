@@ -6,8 +6,11 @@ import br.edu.infnet.apppagamento.model.domain.Conta;
 import br.edu.infnet.apppagamento.model.domain.Extra;
 import br.edu.infnet.apppagamento.model.domain.Pagamento;
 import br.edu.infnet.apppagamento.model.domain.Tributo;
+import br.edu.infnet.apppagamento.model.exceptions.ClienteInvalidoException;
+import br.edu.infnet.apppagamento.model.exceptions.ConjuntoDeContasInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
 import br.edu.infnet.apppagamento.model.service.PagamentoService;
+import org.apache.catalina.startup.ContextConfig;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -33,7 +36,7 @@ public class PagamentoTeste implements ApplicationRunner {
 	}
 
 	@Override
-	public void run(ApplicationArguments args) throws FileNotFoundException{
+	public void run(ApplicationArguments args) {
 
 		System.out.println("# Pagamento #");
 		System.out.println("\n");
@@ -47,67 +50,68 @@ public class PagamentoTeste implements ApplicationRunner {
 			BufferedReader leitura = new BufferedReader(fileReader);
 			String linha = leitura.readLine();
 			List<Pagamento> pagamentos = new ArrayList<>();
-			Pagamento pagamento = null;
-			Cliente cliente = null;
-			Consumo consumo = null;
-			Extra extra = null;
-			Tributo tributo = null;
-			Set<Conta> contas = new HashSet<>();
+			Set<Conta> contas = null;
 			while(linha != null) {
-				try {
-					String[] campos = linha.split(";");
+				String[] campos = linha.split(";");
 
-					switch (campos[0].toUpperCase()) {
+				switch (campos[0].toUpperCase()) {
 
-						case "P" -> {
-							pagamento  = new Pagamento();
+					case "P" -> {
+						try {
+							contas = new HashSet<>();
+							Cliente cliente = new Cliente();
+							cliente.setId(Integer.valueOf(campos[4]));
+							cliente.setNome(campos[5]);
+							cliente.setEmail(campos[6]);
+							cliente.setCpfOuCpnj(campos[7]);
+
+							Pagamento pagamento = new Pagamento(cliente, contas);
 							pagamento.setNumeroCartao(campos[1]);
 							pagamento.setBandeira(campos[2]);
 							pagamento.setValor(BigDecimal.valueOf(Double.parseDouble(campos[3])));
+							pagamentos.add(pagamento);
+						}  catch (ConjuntoDeContasInvalidoException | ClienteInvalidoException e) {
+							throw new RuntimeException(e);
 						}
-
-						case "CL" -> {
-							 cliente = new Cliente(Integer.valueOf(campos[1]),campos[2],campos[3], campos[4]);
-							 pagamento.setCliente(cliente);
-						}
-
-						case "C" -> {
-							 consumo = new Consumo(campos[1], Integer.valueOf(campos[2]), campos[3]);
-							 contas.add(consumo);
-							 pagamento.setContas(contas);
-						}
-
-						case "E" -> {
-							extra = new Extra(Integer.valueOf(campos[1]),
-									Boolean.parseBoolean(campos[2]),
-									Boolean.parseBoolean(campos[3]));
-
-							contas.add(extra);
-							pagamento.setContas(contas);
-						}
-
-						case "T" -> {
-							tributo = new Tributo(
-									BigDecimal.valueOf(Double.parseDouble(campos[1])),
-									BigDecimal.valueOf(Double.parseDouble(campos[2])),
-									BigDecimal.valueOf(Double.parseDouble(campos[3]))
-							);
-							contas.add(tributo);
-							pagamento.setContas(contas);
-
-						}
-
-						default -> pagamentos.add(pagamento);
 					}
 
-				} catch (CpfOuCnpjInvalidoException e) {
-					throw new RuntimeException(e);
+					case "C" -> {
+						 Consumo consumo = new Consumo();
+						 consumo.setItem(campos[1]);
+						 consumo.setQuantidadeDeItens(Integer.valueOf(campos[2]));
+						 consumo.setIndividualOuGrupo(campos[3]);
+						assert contas != null;
+						contas.add(consumo);
+					}
+
+					case "E" -> {
+						Extra extra = new Extra();
+						extra.setId(Integer.valueOf(campos[1]));
+						extra.setPagamentoLote(Boolean.parseBoolean(campos[2]));
+						extra.setPagamentoUnico(Boolean.parseBoolean(campos[3]));
+
+						assert contas != null;
+						contas.add(extra);
+					}
+
+					case "T" -> {
+
+						Tributo tributo = new Tributo();
+						tributo.setICMS(BigDecimal.valueOf(Double.parseDouble(campos[1])));
+						tributo.setIOF(BigDecimal.valueOf(Double.parseDouble(campos[2])));
+						tributo.setISS(BigDecimal.valueOf(Double.parseDouble(campos[3])));
+						assert contas != null;
+						contas.add(tributo);
+					}
+
+					default -> System.out.println();
 				}
 				linha = leitura.readLine();
+
 			}
 
 			for (Pagamento p: pagamentos) {
-				service.incluir(pagamento);
+				service.incluir(p);
 
 				System.out.println(">>>>>>>>>>> "+p.getId());
 				System.out.println(">>>>>>>> "+p.getCliente().getNome());

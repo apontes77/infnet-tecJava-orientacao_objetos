@@ -41,6 +41,7 @@ public class TributoTeste implements ApplicationRunner {
 							tributo.setICMS(BigDecimal.valueOf(Double.parseDouble(campos[1])));
 							tributo.setIOF(BigDecimal.valueOf(Double.parseDouble(campos[2])));
 							tributo.setISS(BigDecimal.valueOf(Double.parseDouble(campos[3])));
+							tributo.setDescricao(campos[4]);
 							service.incluir(tributo);
 						}
 						linha = leitura.readLine();

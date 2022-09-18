@@ -13,7 +13,7 @@ public abstract class Conta implements IPrinter {
 	private boolean contaAtiva;
 
 	public Conta() {}
-	
+
 	public abstract boolean mostraContaAtiva() throws ConsumoInvalidoException, ImpostoInvalidoException, QuantidadeDeParcelasInvalidaException;
 
 	public Conta(Integer id, String descricao, boolean contaAtiva) {

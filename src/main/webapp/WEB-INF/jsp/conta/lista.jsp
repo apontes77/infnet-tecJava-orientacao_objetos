@@ -11,10 +11,10 @@
 </head>
 <html>
    <body>
-      
+
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
       <div class="container mt-3">
-         <h4>Classe: Conta</h4>
+         <h4>Contas</h4>
          <table class="table table-striped">
             <thead>
                <tr>
