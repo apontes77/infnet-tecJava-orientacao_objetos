@@ -9,6 +9,12 @@ public class Extra extends Conta {
 	private boolean pagamentoLote;
 	private boolean pagamentoUnico;
 
+	public Extra(Integer numeroDeParcelas, boolean pagamentoLote, boolean pagamentoUnico) {
+		this.numeroDeParcelas = numeroDeParcelas;
+		this.pagamentoLote = pagamentoLote;
+		this.pagamentoUnico = pagamentoUnico;
+	}
+
 	public Extra() {
 	}
 

@@ -21,6 +21,13 @@ public class PagamentoController {
     	
         return "pagamento/lista";
     }
+
+	@GetMapping(value = "/pagamento/lista")
+	public String telaCadastro(Model model) {
+		model.addAttribute("listagem", service.obterLista());
+
+		return "pagamento/lista";
+	}
     
     @PostMapping(value = "/pagamento/incluir")
 	public String inclusao(Pagamento pagamento) {

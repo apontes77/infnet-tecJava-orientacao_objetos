@@ -1,13 +1,7 @@
 package br.edu.infnet.apppagamento;
 
-import br.edu.infnet.apppagamento.model.domain.Cliente;
 import br.edu.infnet.apppagamento.model.domain.Consumo;
-import br.edu.infnet.apppagamento.model.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
-import br.edu.infnet.apppagamento.model.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.apppagamento.model.exceptions.QuantidadeDeParcelasInvalidaException;
 import br.edu.infnet.apppagamento.model.service.ConsumoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -19,9 +13,11 @@ import java.io.IOException;
 
 @Component
 public class ConsumoTeste implements ApplicationRunner {
-	
-	@Autowired
 	private ConsumoService service;
+
+	public ConsumoTeste(ConsumoService service) {
+		this.service = service;
+	}
 
 
 	@Override
@@ -30,26 +26,24 @@ public class ConsumoTeste implements ApplicationRunner {
 		System.out.println("\n");
 
 		String dir = "src/main/resources/files/";
-		String arq = "consumo.txt";
+		String arq = "conta.txt";
 
 		try {
 			try {
 				FileReader fileReader = new FileReader(dir+arq);
 				BufferedReader leitura = new BufferedReader(fileReader);
 				String linha = leitura.readLine();
-				while(linha != null) {
-					String[] campos = linha.split(";");
-
-					Consumo c1 = new Consumo(campos[0], Integer.valueOf(campos[1]), campos[2]);
-					service.incluir(c1);
-
+					while (linha != null) {
+						String[] campos = linha.split(";");
+						if ("C".equalsIgnoreCase(campos[0])) {
+						Consumo c1 = new Consumo(campos[1], Integer.valueOf(campos[2]), campos[3]);
+						service.incluir(c1);
+					}
 					linha = leitura.readLine();
 				}
 				leitura.close();
 				fileReader.close();
-			} catch (FileNotFoundException e) {
-				System.out.println("ERROR: "+e.getMessage());
-			} catch(IOException e) {
+			} catch (IOException e) {
 				System.out.println("ERROR: "+e.getMessage());
 			}
 		} finally {

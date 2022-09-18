@@ -18,6 +18,9 @@ public class Pagamento implements IPrinter {
 	private LocalDateTime data;
 	private Set<Conta> contas;
 
+	public Pagamento() {
+	}
+
 	public Pagamento(Cliente cliente, Set<Conta> contas) throws ConjuntoDeContasInvalidoException, ClienteInvalidoException {
 		if(cliente==null) {
 			throw new ClienteInvalidoException("não é possível gerar um pagamento com um cliente nulo");

@@ -1,82 +1,59 @@
 package br.edu.infnet.apppagamento;
 
 import br.edu.infnet.apppagamento.model.domain.Extra;
-import br.edu.infnet.apppagamento.model.exceptions.ConsumoInvalidoException;
-import br.edu.infnet.apppagamento.model.exceptions.ImpostoInvalidoException;
-import br.edu.infnet.apppagamento.model.exceptions.QuantidadeDeParcelasInvalidaException;
 import br.edu.infnet.apppagamento.model.service.ExtraService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
 public class ExtraTeste implements ApplicationRunner {
-	
-	@Autowired
+
 	private ExtraService service;
-	
+
+	public ExtraTeste(ExtraService service) {
+		this.service = service;
+	}
+
 	@Override
 	public void run(ApplicationArguments args)  {
 
 		System.out.println("# Extra #");
 		System.out.println("\n");
 
-		
-		try {
-			Extra e1 = new Extra();
-			e1.setNumeroDeParcelas(2);
-			e1.setPagamentoLote(false);
-			e1.setPagamentoUnico(true);
-			e1.setContaAtiva(true);
-			e1.setDescricao("conta para experts");
-			e1.mostraContaAtiva();
-			service.incluir(e1);
-		} catch (ConsumoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (ImpostoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (QuantidadeDeParcelasInvalidaException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		}
-		
+		String dir = "src/main/resources/files/";
+		String arq = "conta.txt";
 
-		
 		try {
-			Extra e2 = new Extra();
-			e2.setNumeroDeParcelas(4);
-			e2.setPagamentoLote(false);
-			e2.setPagamentoUnico(true);
-			e2.setContaAtiva(true);
-			e2.setDescricao("conta para day traders");
-			e2.mostraContaAtiva();
-			service.incluir(e2);
-		} catch (ConsumoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (ImpostoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (QuantidadeDeParcelasInvalidaException e) {
-			System.out.println("[ERROR] "+e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				String linha = leitura.readLine();
+					while (linha != null) {
+						String[] campos = linha.split(";");
+						if ("E".equalsIgnoreCase(campos[0])) {
+						Extra extra = new Extra();
+						extra.setNumeroDeParcelas(Integer.valueOf(campos[1]));
+						extra.setPagamentoLote(Boolean.parseBoolean(campos[2]));
+						extra.setPagamentoUnico(Boolean.parseBoolean(campos[3]));
+						service.incluir(extra);
+					}
+
+					linha = leitura.readLine();
+				}
+				leitura.close();
+				fileReader.close();
+			} catch (IOException e) {
+				System.out.println("ERROR: "+e.getMessage());
+			}
+		} finally {
+			System.out.println("TERMINOU!!!");
 		}
-	
-		
-		try {
-			Extra e3 = new Extra();
-			e3.setNumeroDeParcelas(6);
-			e3.setPagamentoLote(false);
-			e3.setPagamentoUnico(true);
-			e3.setContaAtiva(true);
-			e3.setDescricao("conta para estudantes");
-			e3.mostraContaAtiva();
-			service.incluir(e3);
-		} catch (ConsumoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (ImpostoInvalidoException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		} catch (QuantidadeDeParcelasInvalidaException e) {
-			System.out.println("[ERROR] "+e.getMessage());
-		}
-		
 
 	}
 
