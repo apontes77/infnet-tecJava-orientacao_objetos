@@ -3,7 +3,17 @@ package br.edu.infnet.apppagamento.model.domain;
 import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
 import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TCliente")
 public class Cliente implements IPrinter {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String email;
@@ -12,8 +22,7 @@ public class Cliente implements IPrinter {
 
 	public Cliente() {
 	}
-	
-	
+
 	public Cliente(Integer id, String nome, String email, String cpfOuCpnj) throws CpfOuCnpjInvalidoException {
 		if(cpfOuCpnj == null) {
 			throw new CpfOuCnpjInvalidoException("CPF ou CNPJ não pode ser nulo");
