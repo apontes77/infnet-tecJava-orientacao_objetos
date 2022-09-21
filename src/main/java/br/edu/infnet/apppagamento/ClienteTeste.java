@@ -1,6 +1,7 @@
 package br.edu.infnet.apppagamento;
 
 import br.edu.infnet.apppagamento.model.domain.Cliente;
+import br.edu.infnet.apppagamento.model.domain.Usuario;
 import br.edu.infnet.apppagamento.model.exceptions.CpfOuCnpjInvalidoException;
 import br.edu.infnet.apppagamento.model.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ClienteTeste implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+
 		System.out.println("# Cliente #");
 		System.out.println("\n");
 
@@ -40,6 +44,7 @@ public class ClienteTeste implements ApplicationRunner {
 
 					try {
 						Cliente cliente = new Cliente(Integer.valueOf(campos[0]), campos[1],campos[2],campos[3]);
+						cliente.setUsuario(usuario);
 						service.incluir(cliente);
 					} catch (CpfOuCnpjInvalidoException e) {
 						System.out.println(e.getMessage());

@@ -1,24 +1,26 @@
 package br.edu.infnet.apppagamento.controller;
 
 import br.edu.infnet.apppagamento.model.domain.Cliente;
+import br.edu.infnet.apppagamento.model.domain.Usuario;
 import br.edu.infnet.apppagamento.model.service.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ClienteController {
-	
-	@Autowired
-	private ClienteService service;
-	
-    @GetMapping(value = "/cliente/lista")
-    public String telaCliente(Model model) {
+	private final ClienteService clienteService;
 
-		model.addAttribute("listagem", service.obterLista());
+	public ClienteController(ClienteService service) {
+		this.clienteService = service;
+	}
+
+	@GetMapping(value = "/cliente/lista")
+    public String telaLista(Model model, @SessionAttribute("user") Usuario user) {
+		model.addAttribute("listagem", clienteService.obterLista(user));
         return "cliente/lista";
     }
 
@@ -28,16 +30,18 @@ public class ClienteController {
 	}
     
     @PostMapping(value = "/cliente/incluir")
-	public String inclusao(Cliente cliente) {
+	public String inclusao(Cliente cliente, @SessionAttribute("user") Usuario usuario) {
+
+		cliente.setUsuario(usuario);
 		
-    	service.incluir(cliente);
+    	clienteService.incluir(cliente);
 		
 		return "redirect:/cliente/lista";
 	}
     
     @GetMapping(value = "/cliente/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
-    	service.excluir(id);
+    	clienteService.excluir(id);
     	return "redirect:/cliente/lista";
     }
 }

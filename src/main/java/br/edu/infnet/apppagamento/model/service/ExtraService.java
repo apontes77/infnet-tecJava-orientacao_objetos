@@ -1,31 +1,31 @@
 package br.edu.infnet.apppagamento.model.service;
 
 import br.edu.infnet.apppagamento.model.domain.Extra;
+import br.edu.infnet.apppagamento.model.repository.ExtraRepository;
 import br.edu.infnet.apppagamento.model.test.AppImpressao;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class ExtraService {
-	
-	private static Map<Integer, Extra> mapaExtra = new HashMap<>();
 
-	private static Integer id = 1;
+	private final ExtraRepository extraRepository;
+
+	public ExtraService(ExtraRepository extraRepository) {
+		this.extraRepository = extraRepository;
+	}
 
 	public void incluir(Extra extra) {
-		extra.setId(id++);
-		mapaExtra.put(extra.getId(), extra);
+		extraRepository.save(extra);
 		AppImpressao.relatorio("Extra: ", extra);
 	}
 	
 	public Collection<Extra> obterLista() {
-		return mapaExtra.values();
+		return (Collection<Extra>) extraRepository.findAll();
 	}
 	
 	public void excluir(Integer id) {
-		mapaExtra.remove(id);
+		extraRepository.deleteById(id);
 	}
 }

@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-@Order(1)
 public class PagamentoTeste implements ApplicationRunner {
 	private PagamentoService service;
 
