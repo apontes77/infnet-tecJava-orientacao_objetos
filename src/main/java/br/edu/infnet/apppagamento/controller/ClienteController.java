@@ -30,7 +30,7 @@ public class ClienteController {
 	}
     
     @PostMapping(value = "/cliente/incluir")
-	public String inclusao(Cliente cliente, @SessionAttribute("user") Usuario usuario) {
+	public String incluir(Cliente cliente, @SessionAttribute("user") Usuario usuario) {
 
 		cliente.setUsuario(usuario);
 		
@@ -40,7 +40,7 @@ public class ClienteController {
 	}
     
     @GetMapping(value = "/cliente/{id}/excluir")
-    public String exclusao(@PathVariable Integer id) {
+    public String excluir(@PathVariable Integer id) {
     	clienteService.excluir(id);
     	return "redirect:/cliente/lista";
     }

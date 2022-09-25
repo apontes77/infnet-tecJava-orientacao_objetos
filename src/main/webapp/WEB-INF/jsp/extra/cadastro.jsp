@@ -14,22 +14,22 @@
    <body>
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
      <div class="container mt-3">
-		  <h3>Cadastramento de Clientes</h3>
+		  <h3>Cadastramento de Extra</h3>
 		 <table class="table table-striped">
-		  <form action="/cliente/incluir" method="post">
-			  <div class="mb-3 mt-3">
-				  <label>Nome:</label>
-				  <input type="text" class="form-control" placeholder="Entre com o seu nome" name="nome">
-			  </div>
+		  <form action="/extra/incluir" method="post">
+		    <div class="mb-3 mt-3">	
+		      <label for="numeroDeParcelas">Quantidade de parcelas:</label>
+		      <input class="form-control" placeholder="Quantidade de parcelas" name="Quantidade de parcelas">
+		    </div>
 		    
 		    <div class="mb-3 mt-3">	
-		      <label for="email">Email:</label>
-		      <input type="email" class="form-control" placeholder="Entre com seu email" name="email">
+		      <label for="pagamentoLote">Pagamento é em lote?</label>
+		      <input class="form-control" placeholder="Pagamento é em lote" name="Pagamento é em lote">
 		    </div>
 		    
 		    <div class="mb-3">
-		      <label for="cpfOuCnpj">CPFouCNPJ:</label>
-		      <input class="form-control" placeholder="Entre com seu CPF ou CNPJ" name="cpfOuCnpj">
+		      <label for="pagamentoUnico">É pagamento único?</label>
+		      <input class="form-control" placeholder="É pagamento único" name="É pagamento único">
 		    </div>
 		    
 		    <button type="submit" class="btn btn-primary">Cadastrar</button>

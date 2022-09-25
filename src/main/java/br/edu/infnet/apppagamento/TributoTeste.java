@@ -4,6 +4,7 @@ import br.edu.infnet.apppagamento.model.domain.Tributo;
 import br.edu.infnet.apppagamento.model.service.TributoService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 @Component
+@Order(5)
 public class TributoTeste implements ApplicationRunner {
 
 	private TributoService service;

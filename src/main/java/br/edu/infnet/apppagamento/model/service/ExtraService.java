@@ -1,6 +1,7 @@
 package br.edu.infnet.apppagamento.model.service;
 
 import br.edu.infnet.apppagamento.model.domain.Extra;
+import br.edu.infnet.apppagamento.model.domain.Usuario;
 import br.edu.infnet.apppagamento.model.repository.ExtraRepository;
 import br.edu.infnet.apppagamento.model.test.AppImpressao;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,10 @@ public class ExtraService {
 	public Collection<Extra> obterLista() {
 		return (Collection<Extra>) extraRepository.findAll();
 	}
-	
+	public Collection<Extra> obterLista(Usuario usuario) {
+		return (Collection<Extra>) extraRepository.findAll(usuario.getId());
+	}
+
 	public void excluir(Integer id) {
 		extraRepository.deleteById(id);
 	}

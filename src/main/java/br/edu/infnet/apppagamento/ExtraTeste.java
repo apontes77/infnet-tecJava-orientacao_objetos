@@ -4,6 +4,7 @@ import br.edu.infnet.apppagamento.model.domain.Extra;
 import br.edu.infnet.apppagamento.model.service.ExtraService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -12,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
+@Order(4)
 public class ExtraTeste implements ApplicationRunner {
 
 	private ExtraService service;

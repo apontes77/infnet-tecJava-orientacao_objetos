@@ -1,24 +1,44 @@
 package br.edu.infnet.apppagamento.model.domain;
 
+import br.edu.infnet.apppagamento.interfaces.IPrinter;
 import br.edu.infnet.apppagamento.model.exceptions.ClienteInvalidoException;
 import br.edu.infnet.apppagamento.model.exceptions.ConjuntoDeContasInvalidoException;
-import br.edu.infnet.apppagamento.interfaces.IPrinter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
-
+@Entity
+@Table(name = "TPagamento")
 public class Pagamento implements IPrinter {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String numeroCartao;
 	private String bandeira;
 	private BigDecimal valor;
-	private Cliente cliente;
 	private LocalDateTime data;
+
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
+
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private Set<Conta> contas;
+
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 
 	public Pagamento() {
 	}
@@ -93,6 +113,13 @@ public class Pagamento implements IPrinter {
 
 	public void setContas(Set<Conta> contas) {
 		this.contas = contas;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

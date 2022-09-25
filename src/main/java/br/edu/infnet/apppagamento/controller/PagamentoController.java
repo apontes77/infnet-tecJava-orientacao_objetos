@@ -1,6 +1,7 @@
 package br.edu.infnet.apppagamento.controller;
 
 import br.edu.infnet.apppagamento.model.domain.Pagamento;
+import br.edu.infnet.apppagamento.model.domain.Usuario;
 import br.edu.infnet.apppagamento.model.service.ClienteService;
 import br.edu.infnet.apppagamento.model.service.ContaService;
 import br.edu.infnet.apppagamento.model.service.PagamentoService;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class PagamentoController {
@@ -24,19 +26,20 @@ public class PagamentoController {
 		this.contaService = contaService;
 	}
 
-	@GetMapping(value = "/pagamento/lista")
-    public String telaPagamento(Model model) {
-    	model.addAttribute("listagem", pagamentoService.obterLista());
-    	
-        return "pagamento/lista";
-    }
-
 	@GetMapping(value = "/pagamento")
-	public String telaCadastro(Model model) {
-		model.addAttribute("clientes", clienteService.obterLista());
+	public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario) {
+		model.addAttribute("clientes", clienteService.obterLista(usuario));
 		model.addAttribute("contas", contaService.obterLista());
 
 		return "pagamento/cadastro";
+	}
+
+
+	@GetMapping(value = "/pagamento/lista")
+	public String telaLista(Model model) {
+		model.addAttribute("listagem", pagamentoService.obterLista());
+
+		return "pagamento/lista";
 	}
     
     @PostMapping(value = "/pagamento/incluir")
@@ -44,7 +47,7 @@ public class PagamentoController {
 		
     	pagamentoService.incluir(pagamento);
 		
-		return "redirect:/";
+		return "redirect:pagamento/lista";
 	}
     
     @GetMapping(value = "/pagamento/{id}/excluir")

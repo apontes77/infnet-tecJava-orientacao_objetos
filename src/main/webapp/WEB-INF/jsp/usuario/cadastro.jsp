@@ -14,9 +14,8 @@
    <body>
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
      <div class="container mt-3">
-		  <h3>Cadastramento de Clientes</h3>
-		 <table class="table table-striped">
-		  <form action="/cliente/incluir" method="post">
+		  <h2>cadastramento de usuários</h2>
+		  <form action="/usuario/incluir" method="post">
 			  <div class="mb-3 mt-3">
 				  <label>Nome:</label>
 				  <input type="text" class="form-control" placeholder="Entre com o seu nome" name="nome">
@@ -28,13 +27,12 @@
 		    </div>
 		    
 		    <div class="mb-3">
-		      <label for="cpfOuCnpj">CPFouCNPJ:</label>
-		      <input class="form-control" placeholder="Entre com seu CPF ou CNPJ" name="cpfOuCnpj">
+		      <label for="pwd">Senha:</label>
+		      <input type="password" class="form-control" placeholder="Entre com sua senha" name="senha">
 		    </div>
 		    
 		    <button type="submit" class="btn btn-primary">Cadastrar</button>
 		  </form>
-	  </table>
-	 </div>
+		</div>
    </body>
 </html>

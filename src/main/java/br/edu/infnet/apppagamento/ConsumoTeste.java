@@ -5,6 +5,7 @@ import br.edu.infnet.apppagamento.model.service.ConsumoService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.cache.Cache;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.Random;
 
 @Component
+@Order(3)
 public class ConsumoTeste implements ApplicationRunner {
 	private ConsumoService service;
 

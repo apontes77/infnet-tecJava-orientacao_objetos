@@ -8,6 +8,7 @@
    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet">
+   <title>AppPagamento</title>
 </head>
 <html>
    <body>
@@ -18,7 +19,7 @@
             <thead>
                <tr>
                   <th>Nome</th>
-                  <th>e-mail</th>
+                  <th>E-mail</th>
                   <th>Senha</th>
                   <th></th>
                </tr>
@@ -29,7 +30,7 @@
                   <td>${u.nome}</td>
                   <td>${u.email}</td>
                   <td>${u.senha}</td>
-                  <td><a href="/usuario/${u.email}/excluir" >excluir</a></td>
+                  <td><a href="/usuario/${u.email}/excluir">excluir</a></td>
                </tr>
              </c:forEach>
             </tbody>

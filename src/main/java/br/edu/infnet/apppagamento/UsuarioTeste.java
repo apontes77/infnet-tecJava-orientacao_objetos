@@ -16,17 +16,20 @@ import java.io.IOException;
 @Component
 @Order(1)
 public class UsuarioTeste implements ApplicationRunner{
-	
-	@Autowired
-	private UsuarioService service;
-	
-	private Usuario usuario = new Usuario();
 
+	private UsuarioService service;
+
+	private Usuario usuario;
+
+	public UsuarioTeste(UsuarioService service) {
+		this.service = service;
+	}
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		usuario = new Usuario();
 		usuario.setEmail("admin@admin.com");
-		usuario.setNome("admin");
+		usuario.setNome("Administrador");
 		usuario.setSenha("123");
 		
 		service.incluir(usuario);
@@ -55,16 +58,16 @@ public class UsuarioTeste implements ApplicationRunner{
 			
 			leitura.close();
 			fileReader.close();
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("ERROR: "+e.getMessage());
-		} catch(IOException e) {
-			System.out.println("ERROR: "+e.getMessage());
-		}
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe!!!");
+
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo!!!");
+			}
 		} finally {
-			System.out.println("TERMINOU!!!");
+			System.out.println("Terminou!!!");
 		}
-		
+
 	}
 
 }

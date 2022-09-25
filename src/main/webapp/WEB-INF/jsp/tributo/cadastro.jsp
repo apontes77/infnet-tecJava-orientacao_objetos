@@ -8,31 +8,33 @@
    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet">
+	<title>AppPagamento</title>
 </head>
 <html>
    <body>
-   
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
      <div class="container mt-3">
-		  <h2>cadastramento de usuários</h2>
-		  <form action="/usuario/incluir" method="post">
+		  <h3>Cadastramento de Tributo</h3>
+		 <table class="table table-striped">
+		  <form action="/tributo/incluir" method="post">
 		    <div class="mb-3 mt-3">	
-		      <label for="email">Nome :</label>
-		      <input type="email" class="form-control" placeholder="Entre com seu nome" name="nome">
+		      <label for="icms">ICMS:</label>
+		      <input class="form-control" placeholder="ICMS" name="ICMS">
 		    </div>
 		    
 		    <div class="mb-3 mt-3">	
-		      <label for="email">Email :</label>
-		      <input type="email" class="form-control" placeholder="Entre com seu email" name="email">
+		      <label for="iof">IOF</label>
+		      <input class="form-control" placeholder="IOF" name="IOF">
 		    </div>
 		    
 		    <div class="mb-3">
-		      <label for="pwd">Password:</label>
-		      <input type="password" class="form-control" placeholder="Entre com sua senha" name="senha">
+		      <label for="iss">ISS</label>
+		      <input class="form-control" placeholder="ISS" name="ISS">
 		    </div>
 		    
 		    <button type="submit" class="btn btn-primary">Cadastrar</button>
 		  </form>
-		</div>
+	  </table>
+	 </div>
    </body>
 </html>

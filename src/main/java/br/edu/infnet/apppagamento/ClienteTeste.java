@@ -7,6 +7,7 @@ import br.edu.infnet.apppagamento.model.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,10 +16,14 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
+@Order(2)
 public class ClienteTeste implements ApplicationRunner {
-	
-	@Autowired
+
 	private ClienteService service;
+
+	public ClienteTeste(ClienteService service) {
+		this.service = service;
+	}
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -47,7 +52,7 @@ public class ClienteTeste implements ApplicationRunner {
 						cliente.setUsuario(usuario);
 						service.incluir(cliente);
 					} catch (CpfOuCnpjInvalidoException e) {
-						System.out.println(e.getMessage());
+						System.out.println("[ERROR] " + e.getMessage());
 					}
 					linha = leitura.readLine();
 				}
@@ -56,14 +61,15 @@ public class ClienteTeste implements ApplicationRunner {
 				fileReader.close();
 
 			} catch (FileNotFoundException e) {
-				System.out.println("ERROR: "+e.getMessage());
-			} catch(IOException e) {
-				System.out.println("ERROR: "+e.getMessage());
+				System.out.println("[ERRO] O arquivo não existe!!!");
+
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo!!!");
 			}
 		} finally {
-			System.out.println("TERMINOU!!!");
+			System.out.println("Terminou!!!");
 		}
-		
+
 	}
 
 }

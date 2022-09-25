@@ -8,15 +8,16 @@
    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet">
+   <title>AppPagamento</title>
 </head>
 <html>
    <body>
       
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
       <div class="container mt-3">
-         <h3>Pagamentos</h3>
+         <h3>Cadastramento de Pagamentos</h3>
 
-         <h4><a href="/pagamento">Incluir</a></h4>
+         <h4><a href="/pagamento">Novo</a></h4>
          <table class="table table-striped">
             <thead>
                <tr>

@@ -1,6 +1,7 @@
 package br.edu.infnet.apppagamento.model.service;
 
 import br.edu.infnet.apppagamento.model.domain.Consumo;
+import br.edu.infnet.apppagamento.model.domain.Usuario;
 import br.edu.infnet.apppagamento.model.repository.ConsumoRepository;
 import br.edu.infnet.apppagamento.model.test.AppImpressao;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,10 @@ public class ConsumoService {
 	public Collection<Consumo> obterLista() {
 		return (Collection<Consumo>) consumoRepository.findAll();
 	}
-	
+	public Collection<Consumo> obterLista(Usuario usuario) {
+		return (Collection<Consumo>) consumoRepository.findAll(usuario.getId());
+	}
+
 	public void excluir(Integer id) {
 		consumoRepository.deleteById(id);
 	}

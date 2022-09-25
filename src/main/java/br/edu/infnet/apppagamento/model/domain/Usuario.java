@@ -22,7 +22,32 @@ public class Usuario implements IPrinter {
 	private String senha;
 
 	@OneToMany
+	@JoinColumn(name = "idUsuario")
 	private List<Cliente> clientes;
+
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Pagamento> produtos;
+
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Conta> contas;
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;

@@ -19,8 +19,12 @@ import java.util.List;
 @Component
 public class AppTeste implements ApplicationRunner{
 
-	@Autowired
 	private AppService appService;
+
+	public AppTeste(AppService appService) {
+		this.appService = appService;
+	}
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 

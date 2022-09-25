@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UsuarioController {
-	
-	@Autowired
+
 	private UsuarioService service;
-	
+	public UsuarioController(UsuarioService service) {
+		this.service = service;
+	}
+
 	@GetMapping(value = "/usuario/lista")
 	public String telaLista(Model model) {
 		model.addAttribute("listagem", service.obterLista());
