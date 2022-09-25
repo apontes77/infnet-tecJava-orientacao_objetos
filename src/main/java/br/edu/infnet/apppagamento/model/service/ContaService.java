@@ -1,18 +1,11 @@
 package br.edu.infnet.apppagamento.model.service;
 
-import br.edu.infnet.apppagamento.model.domain.Consumo;
 import br.edu.infnet.apppagamento.model.domain.Conta;
 import br.edu.infnet.apppagamento.model.domain.Usuario;
 import br.edu.infnet.apppagamento.model.repository.ContaRepository;
-import br.edu.infnet.apppagamento.model.test.AppImpressao;
-import ch.qos.logback.core.util.COWArrayList;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ContaService {

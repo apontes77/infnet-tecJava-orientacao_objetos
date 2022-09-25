@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class ContaController {
-	private ContaService service;
+	private ContaService contaService;
 
     public ContaController(ContaService service) {
-        this.service = service;
+        this.contaService = service;
     }
 
     @GetMapping(value = "/conta/lista")
-    public String telaConta(Model model, @SessionAttribute("user") Usuario usuario) {
-    	model.addAttribute("listagem", service.obterLista(usuario));
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
+    	model.addAttribute("listagem", contaService.obterLista(usuario));
         return "conta/lista";
     }
 
     @GetMapping(value = "/conta/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        service.excluir(id);
+        contaService.excluir(id);
 
         return "redirect:/conta/lista";
     }
