@@ -22,6 +22,7 @@
                   <th>id</th>
                   <th>descrição</th>
                   <th>conta ativa</th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
@@ -30,7 +31,7 @@
                   <td>${c.id}</td>
                   <td>${c.descricao}</td>
                   <td>${c.contaAtiva}</td>
-                  <td><a href="/conta/${p.id}/excluir">excluir</a> </td>
+                  <td><a href="/conta/${c.id}/excluir">excluir</a> </td>
                </tr>
              </c:forEach>
             </tbody>
