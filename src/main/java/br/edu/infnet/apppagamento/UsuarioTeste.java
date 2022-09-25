@@ -47,7 +47,7 @@ public class UsuarioTeste implements ApplicationRunner{
 			while(linha != null) {
 				
 					String[] campos = linha.split(";");
-					
+					usuario = new Usuario();
 					usuario.setEmail(campos[0]);
 					usuario.setNome(campos[1]);
 					usuario.setSenha(campos[2]);
