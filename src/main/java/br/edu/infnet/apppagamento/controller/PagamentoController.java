@@ -29,25 +29,26 @@ public class PagamentoController {
 	@GetMapping(value = "/pagamento")
 	public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario) {
 		model.addAttribute("clientes", clienteService.obterLista(usuario));
-		model.addAttribute("contas", contaService.obterLista());
+		model.addAttribute("contas", contaService.obterLista(usuario));
 
 		return "pagamento/cadastro";
 	}
 
 
 	@GetMapping(value = "/pagamento/lista")
-	public String telaLista(Model model) {
-		model.addAttribute("listagem", pagamentoService.obterLista());
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
+		model.addAttribute("listagem", pagamentoService.obterLista(usuario));
 
 		return "pagamento/lista";
 	}
     
     @PostMapping(value = "/pagamento/incluir")
-	public String inclusao(Pagamento pagamento) {
+	public String inclusao(Pagamento pagamento, @SessionAttribute("user") Usuario usuario) {
+		pagamento.setUsuario(usuario);
 		
     	pagamentoService.incluir(pagamento);
 		
-		return "redirect:pagamento/lista";
+		return "redirect:/pagamento/lista";
 	}
     
     @GetMapping(value = "/pagamento/{id}/excluir")

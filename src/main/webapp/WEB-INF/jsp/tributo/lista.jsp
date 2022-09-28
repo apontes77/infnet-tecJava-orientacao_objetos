@@ -15,6 +15,7 @@
       <c:import url="/WEB-INF/jsp/menu.jsp"/>
       <div class="container mt-3">
          <h4>Classe: Tributo</h4>
+         <h4><a href="/tributo">Novo</a></h4>
          <table class="table table-striped">
             <thead>
                <tr>

@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Controller
 public class ClienteController {
 	private final ClienteService clienteService;
-
+	private String mensagem;
+	private String tipo;
 	public ClienteController(ClienteService service) {
 		this.clienteService = service;
 	}
@@ -21,6 +22,9 @@ public class ClienteController {
 	@GetMapping(value = "/cliente/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario user) {
 		model.addAttribute("listagem", clienteService.obterLista(user));
+
+		model.addAttribute("mensagem", mensagem);
+		model.addAttribute("tipo", tipo);
         return "cliente/lista";
     }
 
@@ -35,13 +39,23 @@ public class ClienteController {
 		cliente.setUsuario(usuario);
 		
     	clienteService.incluir(cliente);
+
+		mensagem = "Inclusão do cliente " + cliente.getNome() + " realizada com sucesso!!!";
+		tipo = "alert-success";
 		
 		return "redirect:/cliente/lista";
 	}
     
     @GetMapping(value = "/cliente/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
-    	clienteService.excluir(id);
+    	try {
+			clienteService.excluir(id);
+			mensagem = "Exclusão do cliente " + id + " realizada com sucesso!!!";
+			tipo = "alert-success";
+		} catch (Exception e) {
+			mensagem = "Impossível realizar a exclusão do cliente " + id + "!!!";
+			tipo = "alert-danger";
+		}
     	return "redirect:/cliente/lista";
     }
 }

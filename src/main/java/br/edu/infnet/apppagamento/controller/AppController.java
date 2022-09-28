@@ -17,12 +17,13 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes("user")
 @Controller
 public class AppController {
-	
-	@Autowired
 	private UsuarioService service;
-
-    @Autowired
     private AppService appService;
+
+    public AppController(UsuarioService service, AppService appService) {
+        this.service = service;
+        this.appService = appService;
+    }
 
     @GetMapping(value = "/")
     public String telaHome(Model model) {

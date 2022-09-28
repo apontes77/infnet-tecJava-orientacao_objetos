@@ -12,10 +12,10 @@
 </head>
 <html>
    <body>
-      <c:import url="/WEB-INF/jsp/menu.jsp"/>
+   <c:set var="ativaBotao" value="" />
+   <c:import url="/WEB-INF/jsp/menu.jsp"/>
      <div class="container mt-3">
-		  <h3>Cadastramento de Pagamento</h3>
-		 <table class="table table-striped">
+		  <h2>Cadastramento de Pagamento</h2>
 		  <form action="/pagamento/incluir" method="post">
 		    <div class="mb-3 mt-3">	
 		      <label for="numeroCartao">Número do Cartão</label>
@@ -33,25 +33,36 @@
 		    </div>
 
 		  <div class="mb-3">
+			  <c:if test="${not empty clientes}">
 			  <label for="cliente">Cliente</label>
 			  <select class="form-control" id="sel1">
 				  <c:forEach var="clientesList" items="${clientes}">
-				  <option>${clientesList.nome}</option>
+				  <option value="${clientesList.id}">${clientesList.nome}</option>
 				  </c:forEach>
 			  </select>
+			  </c:if>
+			  <c:if test="${empty clientes}">
+				  <label>Não existem clientes cadastrados!</label>
+				  <c:set var="ativaBotao" value="disabled" />
+			  </c:if>
 		  </div>
 		  <div class="mb-3">
+		  <c:if test="${not empty contas}">
 			  <label for="contas">Contas</label>
 			  <c:forEach var="contasList" items="${contas}">
 			  <div class="checkbox">
-				  <label><input type="checkbox" value="">${contasList.descricao}</label>
+				  <label><input type="checkbox" value="${contasList.id}">${contasList.descricao}</label>
 			  </div>
 			  </c:forEach>
+		  </c:if>
+		  <c:if test="${empty contas}">
+			  <label>Não existem contas cadastradas!</label>
+			  <c:set var="ativaBotao" value="disabled" />
+		  </c:if>
 		  </div>
 		    
-		    <button type="submit" class="btn btn-primary">Cadastrar</button>
+		    <button ${ativaBotao} type="submit" class="btn btn-primary">Cadastrar</button>
 		  </form>
-	  </table>
 	 </div>
    </body>
 </html>

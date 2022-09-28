@@ -76,12 +76,13 @@ public class AppTeste implements ApplicationRunner{
 			fileReader.close();
 			
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR: "+e.getMessage());
-		} catch(IOException e) {
-			System.out.println("ERROR: "+e.getMessage());
-		}
+				System.out.println("[ERRO] O arquivo não existe!!!");
+
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo!!!");
+			}
 		} finally {
-			System.out.println("TERMINOU!!!");
+			System.out.println("Terminou!!!");
 		}
 
 	}
